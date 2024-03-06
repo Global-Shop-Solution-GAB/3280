@@ -1,0 +1,376 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+	V.UDT.Jobs.Define("Job",String,"Job")
+	V.UDT.Jobs.Define("Sfx",String,"Sfx")
+	V.UDT.Jobs.Define("Seq",String,"Seq")
+	V.UDT.Jobs.Define("Row",Long,"Row")
+	V.uGlobal.uSorted.Declare("Jobs")
+	
+	V.UDT.UBDetail.Define("JSS",String,"JSS")
+	V.UDT.UBDetail.Define("Job",String,"Job")
+	V.UDT.UBDetail.Define("Sfx",String,"Sfx")
+	V.UDT.UBDetail.Define("Seq",String,"Seq")
+	V.UDT.UBDetail.Define("SAR",String,"SAR")
+	V.UDT.UBDetail.Define("RST",String,"RST")
+	V.UDT.UBDetail.Define("PSC",Boolean,"PSC")
+	V.UDT.UBDetail.Define("BTM",Date,"BTM")
+	V.UDT.UBDetail.Define("ETM",Date,"ETM")
+	V.uGlobal.uDetails.Declare("UBDetail")
+	
+	V.UDT.SeqRes.Define("SeqRes",String,"SeqRes")
+	V.uGlobal.uSeqRes.Declare("SeqRes")
+	
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Coded by: Melinda Keyes
+'Project Start Date: 10/15/2012
+'Hooks:
+'  Hook from Online-Update
+'Notes:
+'  This program will create an import file from the data saved in ATG_APSV3_JBSORT
+'  as well as the other unsorted records for the dispatch list. uses APSV3_UBDETAIL table
+
+'You will probably want to chunk the string every 150 records or so. I would write out a log file to
+'log the progress and I would put out an apsdl.lck file (with a file lock) in Global\\\\Plugins directory.
+'If that file exists and cannot be deleted (i.e. it's locked), the process should end.
+'This will prevent multiple processes overlapping if they take a REALLY long time to run (which they could).
+'No status bar is necessary because this is going to launch from the task scheduler (from Online Update) on the server.
+
+'DEBBIE001000300		2011	11	11	2011	11	21	06	00	08	30	WELD	WELD	N
+'    JSS					year		mo	da	year		mo	da	hr	mn	hr	mn	 rst	         sar		psc
+
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sTxt.Declare(String)
+V.Local.sLog.Declare(String)
+V.Local.sFileDir.Declare(String)
+V.Local.sFileName.Declare(String)
+V.Local.sFQN.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sRST.Declare(String)
+V.Local.sSAR.Declare(String)
+V.Local.sBTM1.Declare(String)
+V.Local.sBTM2.Declare(String)
+V.Local.sBTM3.Declare(String)
+V.Local.sBTM4.Declare(String)
+V.Local.sBTM5.Declare(String)
+V.Local.sETM1.Declare(String)
+V.Local.sETM2.Declare(String)
+V.Local.sETM3.Declare(String)
+V.Local.sETM4.Declare(String)
+V.Local.sETM5.Declare(String)
+V.Local.iTemp.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iD.Declare(Long)
+V.Local.iLines.Declare(Long)
+V.Local.iHndl.Declare(Long)
+V.Local.iHndl2.Declare(Long)
+V.Local.bExists.Declare(Boolean)
+V.Local.bLocked.Declare(Boolean)
+
+V.Local.iLines.Set(0)
+
+F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+'clear out erroneous data lingering in the custom table
+F.Intrinsic.Control.CallSub(Update_table)
+
+'lock processes or quit if already running
+F.Intrinsic.File.GetHandle(V.Local.iHndl2)
+F.Intrinsic.String.Concat(V.Caller.PluginsDir,"\apsdl.lck",V.Local.sFQN)
+F.Intrinsic.File.Exists(V.Local.sFQN,V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.Intrinsic.File.IsFileLocked(V.Local.sFQN,V.Local.bLocked)
+	F.Intrinsic.Control.If(V.Local.bLocked,=,True)
+		F.Intrinsic.Control.End
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.File.OpenForAppend(V.Local.sFQN,V.Local.iHndl2)
+F.Intrinsic.Control.Else
+	F.Intrinsic.File.OpenForWrite(V.Local.sFQN,V.Local.iHndl2)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Task.CreateLock(V.Local.sFQN)
+
+F.Intrinsic.String.Concat("ATG_APS_DISPATCH_GEN_IMPORT_V1.gas starting execution at ",V.Ambient.Now,V.Local.sLog)
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+'create a UDT of all detail records for crossrefernce when building the import file
+V.Local.sLog.Set("Creating UDT of all detail records in APSV3_UBDetail")
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+V.uGlobal.uDetails.Redim(0,0)
+V.Local.sQuery.Set("SELECT * FROM APSV3_UBDetail ORDER BY SAR, BTM, ETM, JSS")
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uDetails",False)
+F.ODBC.conX!rst.Close
+
+'create a UDT of distinct SeqRes codes
+V.Local.sLog.Set("Creating UDT of all distinct SeqRes codes of type 1 or 3")
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+V.uGlobal.uSeqRes.Redim(0,0)
+V.Local.sQuery.Set("SELECT Distinct APSV3_JBLines.SeqRes from APSV3_JBLines JOIN APSV3_JBMaster ON APSV3_JBLines.JOB = APSV3_JBMaster.JOB where APSV3_JBLines.COMPLDATE is Null and (APSV3_JBLines.SeqType = 1 or APSV3_JBLines.SeqType = 3) ORDER by APSV3_JBLines.SeqRes")
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uSeqRes",False)
+F.ODBC.conX!rst.Close
+
+'create import file information
+V.Local.sLog.Set("Creating APSDLccc import file.")
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+V.Local.sFileDir.Set(V.Caller.FilesDir)
+F.Intrinsic.String.Concat("APSDL",V.Caller.CompanyCode,V.Local.sFileName)
+F.Intrinsic.String.Concat(V.Local.sFileDir,"\",V.Local.sFileName,V.Local.sFQN)
+F.Intrinsic.File.GetHandle(V.Local.iHndl)
+F.Intrinsic.File.OpenForWrite(V.Local.sFQN,V.Local.iHndl)
+
+V.Local.sLog.Set("APSDLccc import file has been opened for writing.")
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+'loop through process for every distinct seqres
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSeqRes.UBound,1)
+	F.Intrinsic.String.Concat("Creating the UDT of sorted and unsorted jobs for SeqRes ",V.uGlobal.uSeqRes(V.Local.iC)!SeqRes,V.Local.sLog)
+	F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+	'create a UDT of sorted (first) and unsorted (last) jobs
+	F.Intrinsic.Control.CallSub(Load_udts,"sWC",V.uGlobal.uSeqRes(V.Local.iC)!SeqRes)
+	'for each job look up the detail information and construct the line of the report if a match is found
+
+	F.Intrinsic.String.Concat("UDT of sorted and unsorted jobs for SeqRes ",V.uGlobal.uSeqRes(V.Local.iC)!SeqRes," created. Looping through and constructing file output.",V.Local.sLog)
+	F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+		F.Intrinsic.Control.For(V.Local.iD,0,V.uGlobal.uSorted.UBound,1)
+		F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uDetails!Job,V.uGlobal.uSorted(V.Local.iD)!Job.Trim,V.uGlobal.uDetails!Sfx,V.uGlobal.uSorted(V.Local.iD)!Sfx.Trim,V.uGlobal.uDetails!Seq,V.uGlobal.uSorted(V.Local.iD)!Seq.Trim,V.Local.sReturn)
+		F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+			F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+			V.Local.sReturn.Set(V.Local.sReturn(0))
+			F.Intrinsic.Control.If(V.uGlobal.uDetails(V.Local.sReturn)!PSC,=,True)
+				F.Intrinsic.Date.Year(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",4,V.Local.sBTM1)
+				F.Intrinsic.Date.Month(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM2)
+				F.Intrinsic.Date.Day(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM3)
+				F.Intrinsic.Date.Hour(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM4)
+				F.Intrinsic.Date.Minute(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM5)
+				F.Intrinsic.Date.Year(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",4,V.Local.sETM1)
+				F.Intrinsic.Date.Month(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM2)
+				F.Intrinsic.Date.Day(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM3)
+				F.Intrinsic.Date.Hour(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM4)
+				F.Intrinsic.Date.Minute(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM5)
+
+				F.Intrinsic.String.RPad(V.uGlobal.uDetails(V.Local.sReturn)!RST," ",4,V.Local.sRST)
+				F.Intrinsic.String.RPad(V.uGlobal.uDetails(V.Local.sReturn)!SAR," ",4,V.Local.sSAR)
+
+				F.Intrinsic.String.Concat(V.uGlobal.uDetails(V.Local.sReturn)!JSS,V.Local.sBTM1,V.Local.sBTM2,V.Local.sBTM3,V.Local.sETM1,V.Local.sETM2,V.Local.sETM3,V.Local.sBTM4,V.Local.sBTM5,V.Local.sETM4,V.Local.sETM5,V.Local.sRST,V.Local.sSAR,"Y",V.Local.sTxt)
+			F.Intrinsic.Control.Else
+
+				F.Intrinsic.Date.Year(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",4,V.Local.sBTM1)
+				F.Intrinsic.Date.Month(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM2)
+				F.Intrinsic.Date.Day(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM3)
+				F.Intrinsic.Date.Hour(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM4)
+				F.Intrinsic.Date.Minute(V.uGlobal.uDetails(V.Local.sReturn)!BTM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sBTM5)
+
+				F.Intrinsic.Date.Year(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",4,V.Local.sETM1)
+				F.Intrinsic.Date.Month(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM2)
+				F.Intrinsic.Date.Day(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM3)
+				F.Intrinsic.Date.Hour(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM4)
+				F.Intrinsic.Date.Minute(V.uGlobal.uDetails(V.Local.sReturn)!ETM,V.Local.iTemp)
+				F.Intrinsic.String.LPad(V.Local.iTemp,"0",2,V.Local.sETM5)
+
+				F.Intrinsic.String.RPad(V.uGlobal.uDetails(V.Local.sReturn)!RST," ",4,V.Local.sRST)
+				F.Intrinsic.String.RPad(V.uGlobal.uDetails(V.Local.sReturn)!SAR," ",4,V.Local.sSAR)
+
+				F.Intrinsic.String.Concat(V.uGlobal.uDetails(V.Local.sReturn)!JSS,V.Local.sBTM1,V.Local.sBTM2,V.Local.sBTM3,V.Local.sETM1,V.Local.sETM2,V.Local.sETM3,V.Local.sBTM4,V.Local.sBTM5,V.Local.sETM4,V.Local.sETM5,V.Local.sRST,V.Local.sSAR,"N",V.Local.sTxt)
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.String.Concat("Writing line ",V.Local.iLines,": ",V.Local.sTxt,V.Local.sLog)
+			F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+			F.Intrinsic.Math.Add(V.Local.iLines,1,V.Local.iLines)
+			F.Intrinsic.File.WriteLine(V.Local.iHndl,V.Local.sTxt)
+
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iD)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+V.Local.sLog.Set("File created successfully, closing file.")
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+F.Intrinsic.File.CloseFile(V.Local.iHndl)
+
+F.Intrinsic.String.Concat("File closed. Execution completed at ",V.Ambient.Now,V.Local.sLog)
+F.Intrinsic.File.WriteLine(V.Local.iHndl2,V.Local.sLog)
+
+F.Intrinsic.File.CloseFile(V.Local.iHndl2)
+F.ODBC.Connection!conX.Close
+
+'set the override
+V.Passed.777777.set(1)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_GEN_IMPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+
+Program.Sub.Main.End
+
+Program.Sub.Load_UDTs.Start
+F.Intrinsic.Control.SetErrorHandler("Load_UDTs_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sWC.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.iUB.Declare(Long)
+V.Local.iUB1.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iX.Declare(Long)
+V.Local.iTemp.Declare(Long)
+
+V.Local.sWC.Set(V.Args.sWC)
+
+V.uGlobal.uSorted.Redim(0,0)
+F.Intrinsic.String.Concat("SELECT * FROM ATG_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Local.sWC,"' ORDER BY Row",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uSorted",False)
+F.ODBC.conX!rst.Close
+
+V.Local.iUB1.Set(V.uGlobal.uSorted.UBound)
+F.Intrinsic.Control.For(V.Local.iC,0,V.Local.iUB1,1)
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uDetails!Job,V.uGlobal.uSorted(V.Local.iC)!Job.Trim,V.uGlobal.uDetails!Sfx,V.uGlobal.uSorted(V.Local.iC)!Sfx.Trim,V.uGlobal.uDetails!SAR,V.Local.sWC,V.Local.sReturn)
+	F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+		F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+		F.Intrinsic.Control.For(V.Local.iX,0,V.Local.sReturn.UBound,1)
+			V.Local.iTemp.Set(V.Local.sReturn(V.Local.iX))
+			F.Intrinsic.Control.If(V.uGlobal.uDetails(V.Local.iTemp)!Seq,<>,V.uGlobal.uSorted(V.Local.iC)!Seq)
+				F.Intrinsic.Math.Add(V.uGlobal.uSorted.UBound,1,V.Local.iUB)
+				F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,=,-1)
+					V.uGlobal.uSorted.Redim(0,0)
+				F.Intrinsic.Control.Else
+					V.uGlobal.uSorted.RedimPreserve(0,V.Local.iUB)
+				F.Intrinsic.Control.EndIf
+				V.uGlobal.uSorted(V.Local.iUB)!Job.Set(V.uGlobal.uSorted(V.Local.iC)!Job)
+				V.uGlobal.uSorted(V.Local.iUB)!Sfx.Set(V.uGlobal.uSorted(V.Local.iC)!Sfx)
+				V.uGlobal.uSorted(V.Local.iUB)!Seq.Set(V.uGlobal.uDetails(V.Local.iTemp)!Seq)
+				V.uGlobal.uSorted(V.Local.iUB)!Row.Set(V.uGlobal.uSorted(V.Local.iC)!Row)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iX)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'loop through all the open jobs for the WC and add the ones not pre-sorted to the sorted list
+F.Intrinsic.String.Concat("SELECT APSV3_JBLines.Job, APSV3_JBLines.Sfx, APSV3_JBLines.Seq, APSV3_JBLines.SeqRes, APSV3_JBMaster.Description, APSV3_JBMaster.Part, APSV3_JBMaster.CustName, APSV3_JBMaster.CustNo, APSV3_JBMaster.DueDate, APSV3_JBMaster.Priority, APSV3_JBMaster.SchedStart, APSV3_JBMaster.SchedEnd from APSV3_JBLines JOIN APSV3_JBMaster ON APSV3_JBLines.JOB = APSV3_JBMaster.JOB and APSV3_JBLines.SFX = APSV3_JBMaster.SFX where APSV3_JBLines.COMPLDATE is Null and APSV3_JBLines.SeqType = 1 AND APSV3_JBLines.SeqRes = '",V.Local.sWC,"' ORDER BY APSV3_JBMaster.SchedStart, APSV3_JBMaster.SchedEnd",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+'add any remaining seqres lines to the sorted list
+F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSorted!Job,V.ODBC.conX!rst.FieldValTrim!Job,V.uGlobal.uSorted!Sfx,V.ODBC.conX!rst.FieldValTrim!Sfx,V.uGlobal.uSorted!Seq,V.ODBC.conX!rst.FieldValTrim!Seq,V.Local.sReturn)
+	F.Intrinsic.Control.If(V.Local.sReturn,=,"")
+	'job was not found in sorted list, add to list
+		F.Intrinsic.Math.Add(V.uGlobal.uSorted.UBound,1,V.Local.iUB)
+		F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,=,-1)
+			V.uGlobal.uSorted.Redim(0,0)
+		F.Intrinsic.Control.Else
+			V.uGlobal.uSorted.RedimPreserve(0,V.Local.iUB)
+		F.Intrinsic.Control.EndIf
+		V.uGlobal.uSorted(V.Local.iUB)!Job.Set(V.ODBC.conX!rst.FieldValTrim!Job)
+		V.uGlobal.uSorted(V.Local.iUB)!Sfx.Set(V.ODBC.conX!rst.FieldValTrim!Sfx)
+		V.uGlobal.uSorted(V.Local.iUB)!Seq.Set(V.ODBC.conX!rst.FieldValTrim!Seq)
+		V.uGlobal.uSorted(V.Local.iUB)!Row.Set(V.Local.iUB)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.conX!rst.Close
+
+F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uSorted!Row,False,V.uGlobal.uSorted!Job,False,V.uGlobal.uSorted!Sfx,False,V.uGlobal.uSorted!Seq,False)
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uSorted!Job,V.uGlobal.uSorted!Sfx,V.uGlobal.uSorted!Seq)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uSorted)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_UDTs_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_GEN_IMPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+
+Program.Sub.Load_UDTs.End
+
+Program.Sub.Update_Table.Start
+F.Intrinsic.Control.SetErrorHandler("Update_Table_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sDeletions.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.bExists.Declare(Boolean)
+
+F.ODBC.Connection!conX.TableExists("ATG_APSV3_JBSORT_V1",V.Local.bExists)
+
+'if the table exists, loop through all the records
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.ODBC.Connection!conX.OpenRecordsetRW("rst","ATG_APSV3_JBSORT_V1")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		F.Intrinsic.String.Concat("SELECT ComplDate FROM APSV3_JBLines WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst2",V.Local.sQuery)
+		'if the record exists and has a completion date listed, delete the record
+		F.Intrinsic.Control.If(V.ODBC.conX!rst2.EOF,<>,True)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst2.FieldValTrim!ComplDate,<>,"")
+				F.Intrinsic.String.Concat("*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			'if the record doesnt exist, delete it from the custom table
+			F.Intrinsic.String.Concat("*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst2.Close
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.EndIf
+
+'delete all marked sequences
+F.Intrinsic.String.Split(V.Local.sDeletions,"*!*",V.Local.sDeletions)
+F.Intrinsic.Control.For(V.Local.iC,1,V.Local.sDeletions.UBound,1)
+	F.ODBC.Connection!conX.Execute(V.Local.sDeletions(V.Local.iC))
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Update_Table_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Update_Table.End
+
+
