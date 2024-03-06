@@ -1,0 +1,3150 @@
+Program.Sub.ScreenSU.Start
+gui.F_Dispatch..create
+gui.F_Dispatch..caption("Moveable Dispatch List")
+gui.F_Dispatch..size(19230,12855)
+gui.F_Dispatch..position(0,0)
+gui.F_Dispatch..event(resize,f_dispatch_resize)
+gui.F_Dispatch..event(unload,f_dispatch_unload)
+gui.F_Dispatch..alwaysontop(False)
+gui.F_Dispatch..fontname("Arial")
+gui.F_Dispatch..fontsize(8)
+gui.F_Dispatch..forecolor(0)
+gui.F_Dispatch..fontstyle(,,,,)
+gui.F_Dispatch..BackColor(-2147483633)
+gui.F_Dispatch..controlbox(True)
+gui.F_Dispatch..maxbutton(True)
+gui.F_Dispatch..minbutton(True)
+gui.F_Dispatch..mousepointer(0)
+gui.F_Dispatch..moveable(True)
+gui.F_Dispatch..sizeable(True)
+gui.F_Dispatch..ShowInTaskBar(True)
+gui.F_Dispatch..titlebar(True)
+gui.F_Dispatch..addMenuItem(0,0,"Format Columns",True,True,formatcolumns_click)
+gui.F_Dispatch..MenuItemCheck(0,0,False)
+gui.F_Dispatch.dlist_WC.create(dropdownlist)
+gui.F_Dispatch.dlist_WC.visible(True)
+gui.F_Dispatch.dlist_WC.size(2500,330)
+gui.F_Dispatch.dlist_WC.zorder(0)
+gui.F_Dispatch.dlist_WC.position(200,400)
+gui.F_Dispatch.dlist_WC.enabled(True)
+gui.F_Dispatch.dlist_WC.fontname("Arial")
+gui.F_Dispatch.dlist_WC.fontsize(8)
+gui.F_Dispatch.cmd_Reset.create(button)
+gui.F_Dispatch.cmd_Reset.caption("Reset to Last Saved List")
+gui.F_Dispatch.cmd_Reset.visible(True)
+gui.F_Dispatch.cmd_Reset.size(2500,375)
+gui.F_Dispatch.cmd_Reset.zorder(0)
+gui.F_Dispatch.cmd_Reset.position(13400,400)
+gui.F_Dispatch.cmd_Reset.enabled(True)
+gui.F_Dispatch.cmd_Reset.fontname("Arial")
+gui.F_Dispatch.cmd_Reset.fontsize(8)
+gui.F_Dispatch.cmd_Reset.event(click,cmd_reset_click)
+gui.F_Dispatch.cmd_Default.create(button)
+gui.F_Dispatch.cmd_Default.caption("Reset to Default Dispatch List")
+gui.F_Dispatch.cmd_Default.visible(True)
+gui.F_Dispatch.cmd_Default.size(2500,375)
+gui.F_Dispatch.cmd_Default.zorder(0)
+gui.F_Dispatch.cmd_Default.position(16100,400)
+gui.F_Dispatch.cmd_Default.enabled(True)
+gui.F_Dispatch.cmd_Default.fontname("Arial")
+gui.F_Dispatch.cmd_Default.fontsize(8)
+gui.F_Dispatch.cmd_Default.event(click,cmd_default_click)
+gui.F_Dispatch.gsfx_jobs.create(gsflexgrid)
+gui.F_Dispatch.gsfx_jobs.FixedRows(0)
+gui.F_Dispatch.gsfx_jobs.FixedCols(0)
+gui.F_Dispatch.gsfx_jobs.visible(True)
+gui.F_Dispatch.gsfx_jobs.size(18660,10425)
+gui.F_Dispatch.gsfx_jobs.zorder(0)
+gui.F_Dispatch.gsfx_jobs.position(200,1100)
+gui.F_Dispatch.gsfx_jobs.enabled(True)
+gui.F_Dispatch.gsfx_jobs.event(posttextmatrix,gsfx_jobs_posttextmatrix)
+gui.F_Dispatch.gsfx_jobs.event(lostfocus,gsfx_jobs_lostfocus)
+gui.F_Dispatch.gsfx_jobs.event(commandclick,gsfx_jobs_commandclick)
+gui.F_Dispatch.cmd_Save.create(button)
+gui.F_Dispatch.cmd_Save.caption("Save Current Order")
+gui.F_Dispatch.cmd_Save.visible(True)
+gui.F_Dispatch.cmd_Save.size(2000,375)
+gui.F_Dispatch.cmd_Save.zorder(0)
+gui.F_Dispatch.cmd_Save.position(100,11700)
+gui.F_Dispatch.cmd_Save.enabled(True)
+gui.F_Dispatch.cmd_Save.fontname("Arial")
+gui.F_Dispatch.cmd_Save.fontsize(8)
+gui.F_Dispatch.cmd_Save.event(click,cmd_save_click)
+gui.F_Dispatch.lbl_WC.create(label,"WC / WG",True,1935,255,1,200,200,True,0,Arial,8,-2147483633,0)
+gui.F_Dispatch.cmd_Search.create(button)
+gui.F_Dispatch.cmd_Search.caption("Show List")
+gui.F_Dispatch.cmd_Search.visible(True)
+gui.F_Dispatch.cmd_Search.size(1000,380)
+gui.F_Dispatch.cmd_Search.zorder(0)
+gui.F_Dispatch.cmd_Search.position(2800,400)
+gui.F_Dispatch.cmd_Search.enabled(True)
+gui.F_Dispatch.cmd_Search.fontname("Arial")
+gui.F_Dispatch.cmd_Search.fontsize(8)
+gui.F_Dispatch.cmd_Search.event(click,cmd_search_click)
+gui.F_Dispatch.chk_previous_seq.create(checkbox)
+gui.F_Dispatch.chk_previous_seq.caption("Display previous sequence completion")
+gui.F_Dispatch.chk_previous_seq.visible(True)
+gui.F_Dispatch.chk_previous_seq.size(3355,255)
+gui.F_Dispatch.chk_previous_seq.zorder(0)
+gui.F_Dispatch.chk_previous_seq.position(4100,400)
+gui.F_Dispatch.chk_previous_seq.enabled(True)
+gui.F_Dispatch.chk_previous_seq.alignment(0)
+gui.F_Dispatch.chk_previous_seq.fontname("Arial")
+gui.F_Dispatch.chk_previous_seq.fontsize(8)
+gui.F_Dispatch.chk_previous_seq.event(click,chk_previous_seq_click)
+gui.F_Dispatch.cmd_order.create(button)
+gui.F_Dispatch.cmd_order.caption("Order Rows")
+gui.F_Dispatch.cmd_order.visible(True)
+gui.F_Dispatch.cmd_order.size(2000,375)
+gui.F_Dispatch.cmd_order.zorder(0)
+gui.F_Dispatch.cmd_order.position(2200,11700)
+gui.F_Dispatch.cmd_order.enabled(True)
+gui.F_Dispatch.cmd_order.fontname("Arial")
+gui.F_Dispatch.cmd_order.fontsize(8)
+gui.F_Dispatch.cmd_order.event(click,Order_Rows_New)
+gui.F_Dispatch.chk_auto_number.create(checkbox)
+gui.F_Dispatch.chk_auto_number.caption("Automatically number rows")
+gui.F_Dispatch.chk_auto_number.visible(True)
+gui.F_Dispatch.chk_auto_number.size(3400,255)
+gui.F_Dispatch.chk_auto_number.zorder(0)
+gui.F_Dispatch.chk_auto_number.position(4100,720)
+gui.F_Dispatch.chk_auto_number.enabled(True)
+gui.F_Dispatch.chk_auto_number.alignment(0)
+gui.F_Dispatch.chk_auto_number.fontname("Arial")
+gui.F_Dispatch.chk_auto_number.fontsize(8)
+gui.F_Dispatch.chk_auto_number.event(click,chk_auto_number_click)
+gui.F_Dispatch.cmd_print.create(button)
+gui.F_Dispatch.cmd_print.caption("Print Sorted List")
+gui.F_Dispatch.cmd_print.visible(True)
+gui.F_Dispatch.cmd_print.size(2000,375)
+gui.F_Dispatch.cmd_print.zorder(0)
+gui.F_Dispatch.cmd_print.position(16800,11700)
+gui.F_Dispatch.cmd_print.enabled(True)
+gui.F_Dispatch.cmd_print.fontname("Arial")
+gui.F_Dispatch.cmd_print.fontsize(8)
+gui.F_Dispatch.cmd_print.event(click,cmd_print_click)
+gui.F_Dispatch.txt_search.create(textbox,"",True,3000,300,0,5700,11800,True,0,Arial,8,-2147483643,1)
+gui.F_Dispatch.dlist_column.create(dropdownlist)
+gui.F_Dispatch.dlist_column.visible(True)
+gui.F_Dispatch.dlist_column.size(2500,330)
+gui.F_Dispatch.dlist_column.zorder(0)
+gui.F_Dispatch.dlist_column.position(8800,11805)
+gui.F_Dispatch.dlist_column.enabled(True)
+gui.F_Dispatch.dlist_column.fontname("Arial")
+gui.F_Dispatch.dlist_column.fontsize(8)
+gui.F_Dispatch.cmd_searchtool.create(button)
+gui.F_Dispatch.cmd_searchtool.caption("Search")
+gui.F_Dispatch.cmd_searchtool.visible(True)
+gui.F_Dispatch.cmd_searchtool.size(1000,375)
+gui.F_Dispatch.cmd_searchtool.zorder(0)
+gui.F_Dispatch.cmd_searchtool.position(11415,11805)
+gui.F_Dispatch.cmd_searchtool.enabled(True)
+gui.F_Dispatch.cmd_searchtool.fontname("Arial")
+gui.F_Dispatch.cmd_searchtool.fontsize(8)
+gui.F_Dispatch.cmd_searchtool.event(click,cmd_searchtool_click)
+gui.F_Dispatch.lbl_searchtxt.create(label,"Search Text",True,1935,255,1,5700,11600,True,0,Arial,8,-2147483633,0)
+gui.F_Dispatch.lbl_column.create(label,"Search Column",True,1935,255,1,8800,11600,True,0,Arial,8,-2147483633,0)
+gui.F_Dispatch.chk_columns.create(checkbox)
+gui.F_Dispatch.chk_columns.caption("Format Column Widths")
+gui.F_Dispatch.chk_columns.visible(True)
+gui.F_Dispatch.chk_columns.size(3400,255)
+gui.F_Dispatch.chk_columns.zorder(0)
+gui.F_Dispatch.chk_columns.position(4100,100)
+gui.F_Dispatch.chk_columns.enabled(True)
+gui.F_Dispatch.chk_columns.alignment(0)
+gui.F_Dispatch.chk_columns.fontname("Arial")
+gui.F_Dispatch.chk_columns.fontsize(8)
+gui.F_Dispatch.chk_columns.event(click,chk_columns_click)
+gui.F_Dispatch.cmd_updateCampaign.create(button)
+gui.F_Dispatch.cmd_updateCampaign.caption("Update Campaign")
+gui.F_Dispatch.cmd_updateCampaign.visible(True)
+gui.F_Dispatch.cmd_updateCampaign.size(2000,375)
+gui.F_Dispatch.cmd_updateCampaign.zorder(0)
+gui.F_Dispatch.cmd_updateCampaign.position(14700,11700)
+gui.F_Dispatch.cmd_updateCampaign.enabled(True)
+gui.F_Dispatch.cmd_updateCampaign.fontname("Arial")
+gui.F_Dispatch.cmd_updateCampaign.fontsize(8)
+gui.F_Dispatch.cmd_updateCampaign.event(click,cmd_updatecampaign_click)
+gui.F_Dispatch.dlist_WC.tabstop(True)
+gui.F_Dispatch.dlist_WC.tabindex(1)
+gui.F_Dispatch.cmd_Search.tabstop(True)
+gui.F_Dispatch.cmd_Search.tabindex(2)
+gui.F_Dispatch.chk_previous_seq.tabstop(True)
+gui.F_Dispatch.chk_previous_seq.tabindex(3)
+gui.F_Dispatch.chk_auto_number.tabstop(True)
+gui.F_Dispatch.chk_auto_number.tabindex(4)
+gui.F_Dispatch.cmd_Reset.tabstop(True)
+gui.F_Dispatch.cmd_Reset.tabindex(5)
+gui.F_Dispatch.cmd_Default.tabstop(True)
+gui.F_Dispatch.cmd_Default.tabindex(6)
+gui.F_Dispatch.cmd_Save.tabstop(True)
+gui.F_Dispatch.cmd_Save.tabindex(7)
+gui.F_Dispatch.cmd_order.tabstop(True)
+gui.F_Dispatch.cmd_order.tabindex(8)
+gui.F_Dispatch.txt_search.tabstop(True)
+gui.F_Dispatch.txt_search.tabindex(9)
+gui.F_Dispatch.dlist_column.tabstop(True)
+gui.F_Dispatch.dlist_column.tabindex(10)
+gui.F_Dispatch.cmd_searchtool.tabstop(True)
+gui.F_Dispatch.cmd_searchtool.tabindex(11)
+gui.F_Dispatch.cmd_print.tabstop(True)
+gui.F_Dispatch.cmd_print.tabindex(12)
+
+
+gui.F_Columns..create
+gui.F_Columns..caption("Column Percentages")
+gui.F_Columns..size(5085,5130)
+gui.F_Columns..position(0,0)
+gui.F_Columns..event(unload,f_columns_unload)
+gui.F_Columns..alwaysontop(False)
+gui.F_Columns..fontname("Arial")
+gui.F_Columns..fontsize(8)
+gui.F_Columns..forecolor(0)
+gui.F_Columns..fontstyle(False,False,False,False,)
+gui.F_Columns..BackColor(-2147483633)
+gui.F_Columns..controlbox(True)
+gui.F_Columns..maxbutton(False)
+gui.F_Columns..minbutton(False)
+gui.F_Columns..mousepointer(0)
+gui.F_Columns..moveable(True)
+gui.F_Columns..sizeable(False)
+gui.F_Columns..ShowInTaskBar(True)
+gui.F_Columns..titlebar(True)
+gui.F_Columns.cmd_SaveSettings.create(button)
+gui.F_Columns.cmd_SaveSettings.caption("Save")
+gui.F_Columns.cmd_SaveSettings.visible(True)
+gui.F_Columns.cmd_SaveSettings.size(1200,375)
+gui.F_Columns.cmd_SaveSettings.zorder(0)
+gui.F_Columns.cmd_SaveSettings.position(175,4200)
+gui.F_Columns.cmd_SaveSettings.enabled(True)
+gui.F_Columns.cmd_SaveSettings.fontname("Arial")
+gui.F_Columns.cmd_SaveSettings.fontsize(8)
+gui.F_Columns.cmd_SaveSettings.event(click,cmd_savesettings_click)
+gui.F_Columns.gsfx_Settings.create(gsflexgrid)
+gui.F_Columns.gsfx_Settings.FixedRows(0)
+gui.F_Columns.gsfx_Settings.FixedCols(0)
+gui.F_Columns.gsfx_Settings.visible(True)
+gui.F_Columns.gsfx_Settings.size(4545,3900)
+gui.F_Columns.gsfx_Settings.zorder(0)
+gui.F_Columns.gsfx_Settings.position(200,200)
+gui.F_Columns.gsfx_Settings.enabled(True)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+	V.UDT.Jobs.Define("SeqRes",String,"SeqRes")
+	V.UDT.Jobs.Define("Row",Long,"")
+	V.UDT.Jobs.Define("Part",String,"Part")
+	V.UDT.Jobs.Define("Job",String,"Job")
+	V.UDT.Jobs.Define("OrigDueDate",String,"")
+	V.UDT.Jobs.Define("DueDate",String,"")
+	V.UDT.Jobs.Define("Description",String,"Description")
+	V.UDT.Jobs.Define("Lbs",Float,"")
+	V.UDT.Jobs.Define("Qty",Long,"")
+	V.UDT.Jobs.Define("Campaign",String,"")
+	V.UDT.Jobs.Define("CustName",String,"CustName")
+	V.UDT.Jobs.Define("CustNo",String,"CustNo")
+	V.UDT.Jobs.Define("MasterSpec",String,"")
+	V.UDT.Jobs.Define("Structure",String,"")
+	V.UDT.Jobs.Define("FlatWidth",String,"")
+	V.UDT.Jobs.Define("Category",String,"")
+	V.UDT.Jobs.Define("SchedStart",String,"SchedStart")
+	V.UDT.Jobs.Define("Sfx",String,"Sfx")
+	V.UDT.Jobs.Define("Seq",String,"Seq")
+	V.UDT.Jobs.Define("Priority",String,"Priority")
+	V.UDT.Jobs.Define("SchedEnd",String,"SchedEnd")
+	V.UDT.Jobs.Define("Comp",Boolean,"")
+	V.UDT.Jobs.Define("Sorted",Boolean,"")
+	V.UDT.Jobs.Define("TempStyle",Long,"")
+	V.UDT.Jobs.Define("FGStyle",Long,"")
+	V.UDT.Jobs.Define("Router",String,"")
+	V.UDT.Jobs.Define("OrigCampaign",String,"")
+	V.UDT.Jobs.Define("UoM",String)
+	V.uGlobal.uJobs.Declare("Jobs")
+	V.uGlobal.uOrig.Declare("Jobs")
+	
+	V.UDT.Jobs2.Define("SeqRes",String,"SeqRes")
+	V.UDT.Jobs2.Define("Row",Long,"Row")
+	V.UDT.Jobs2.Define("Part",String,"Part")
+	V.UDT.Jobs2.Define("Job",String,"Job")
+	V.UDT.Jobs2.Define("OrigDueDate",String,"OrigDueDate")
+	V.UDT.Jobs2.Define("DueDate",String,"DueDate")
+	V.UDT.Jobs2.Define("Description",String,"Description")
+	V.UDT.Jobs2.Define("Lbs",Float,"Lbs")
+	V.UDT.Jobs2.Define("Qty",Long,"")
+	V.UDT.Jobs2.Define("Campaign",String,"Campaign")
+	V.UDT.Jobs2.Define("CustName",String,"CustName")
+	V.UDT.Jobs2.Define("CustNo",String,"CustNo")
+	V.UDT.Jobs2.Define("MasterSpec",String,"MasterSpec")
+	V.UDT.Jobs2.Define("Structure",String,"Structure")
+	V.UDT.Jobs2.Define("FlatWidth",String,"")
+	V.UDT.Jobs2.Define("Category",String,"Category")
+	V.UDT.Jobs2.Define("SchedStart",String,"SchedStart")
+	V.UDT.Jobs2.Define("Sfx",String,"Sfx")
+	V.UDT.Jobs2.Define("Seq",String,"Seq")
+	V.UDT.Jobs2.Define("Priority",String,"Priority")
+	V.UDT.Jobs2.Define("SchedEnd",String,"SchedEnd")
+	V.UDT.Jobs2.Define("Comp",Boolean,"")
+	V.UDT.Jobs2.Define("Sorted",Boolean,"")
+	V.UDT.Jobs2.Define("TempStyle",Long,"")
+	V.UDT.Jobs2.Define("FGStyle",Long,"")
+	V.UDT.Jobs2.Define("Router",String,"")
+	V.UDT.Jobs2.Define("OrigCampaign",String,"")
+	V.UDT.Jobs2.Define("UoM",String)
+	V.uGlobal.uSorted.Declare("Jobs2")
+	V.uGlobal.uGrid.Declare("Jobs2")
+	V.uGlobal.uSortedGrid.Declare("Jobs2")
+	V.uGlobal.uUnsortedGrid.Declare("Jobs2")
+	V.uGlobal.uTempGrid.Declare("Jobs2")
+	
+	V.UDT.Campaign.Define("Campaign",String,"ID")
+	V.UDT.Campaign.Define("TotalLbs",Float,"")
+	V.UDT.Campaign.Define("Priority",Long,"Priority")
+	V.uGlobal.uCampaigns.Declare("Campaign")
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Coded by: Melinda Keyes
+'Project Start Date: 10/12/2012
+'Notes:
+'  This program will allow users to specify a desired order for open job lines in the dispatch list.
+
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sHooks.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.bOptOn.Declare(Boolean)
+
+V.Global.sWC.Declare(String)
+V.Global.sPrevReturn.Declare(String)
+V.Global.iPrevIndex.Declare(Long)
+V.Global.iTime.Declare(Long)
+V.Global.bAutoNum.Declare(Boolean)
+V.Global.bDirty.Declare(Boolean)
+V.Global.sCampaigns.Declare(String)
+V.Global.sCallingSub.Declare(String)
+
+V.Global.sPrevReturn.Set("")
+V.Global.iPrevIndex.Set(-1)
+V.Global.bDirty.Set(False)
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+'check to make sure the right custom options are turned on
+'F.Global.General.ReadOption("400587",0,False,V.Local.bOptOn)
+'F.Intrinsic.Control.If(V.Local.bOptOn,=,False)
+'	F.Intrinsic.UI.Msgbox("The custom option 'Use P.SQL 9.5 APS' is not active. Please contact the Global Shop Service Department for information on this option.")
+'	F.Intrinsic.Control.End
+'F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+F.Intrinsic.Control.CallSub(Check_hooks,"iHook",38110)
+
+F.Intrinsic.Control.CallSub(Update_table)
+
+F.ODBC.Connection!conX.TableExists("ATG_APSV3_JBSORT_V1",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	F.Intrinsic.UI.Msgbox("The table ATG_APSV3_JBSORT_V1 was not found. Please execute ATG_APSV3_JBSORT_V1.sql before running this program.")
+	F.Intrinsic.Control.CallSub(F_dispatch_unload)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Initialize_flexgrid)
+
+F.ODBC.Connection!conX.OpenRecordsetRO("rst","SELECT Distinct APSV3_JBLines.SeqRes from APSV3_JBLines where APSV3_JBLines.COMPLDATE is Null and APSV3_JBLines.SeqType = 1 ORDER by APSV3_JBLines.SeqRes")
+F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,True)
+	F.Intrinsic.UI.Msgbox("No job lines were found in the APSV3_JBLines table.")
+	F.Intrinsic.Control.CallSub(F_dispatch_unload)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		Gui.F_Dispatch.dlist_WC.AddItem(V.ODBC.conX!rst.FieldValTrim!SeqRes)
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rst.Close
+
+Gui.F_Dispatch.cmd_Save.Enabled(false)
+Gui.F_Dispatch..WindowState(2)
+Gui.F_Dispatch..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+Program.Sub.Main.End
+
+program.sub.f_dispatch_unload.start
+F.Intrinsic.Control.SetErrorHandler("f_dispatch_unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iRet.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.If(V.Global.bDirty,=,True)
+	F.Intrinsic.UI.Msgbox("Are you sure you want to quit? All unsaved changes will be lost.","Quit",4,V.Local.iRet)
+	F.Intrinsic.Control.If(V.Local.iRet,=,7)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Delete_lock)
+
+F.ODBC.Connection!conX.Close
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("f_dispatch_unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.f_dispatch_unload.end
+
+program.sub.cmd_reset_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_reset_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iRet.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.UI.Msgbox("Are you sure you want to reset to the last saved dispatch list? All unsaved changes will be lost.","Reset to Last Saved List",4,V.Local.iRet)
+
+F.Intrinsic.Control.If(V.Local.iRet,=,6)
+	V.Global.bDirty.Set(False)
+	F.Intrinsic.Control.CallSub(Delete_lock)
+	F.Intrinsic.Control.CallSub(Load_flexgrid_new,"iMode",1)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_reset_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.cmd_reset_click.end
+
+program.sub.cmd_default_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_default_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.iRet.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.UI.Msgbox("Are you sure you want to restore the default order of the dispatch list? This will delete all ordering.","Reset to Default",4,V.Local.iRet)
+
+F.Intrinsic.Control.If(V.Local.iRet,=,6)
+	V.Global.bDirty.Set(False)
+	F.Intrinsic.String.Concat("DELETE FROM ATG_APSV3_JBSORT_V1 WHERE SEQRES = '",V.Global.sWC,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.Execute(V.Local.sQuery)
+	F.Intrinsic.Control.CallSub(Delete_lock)
+	F.Intrinsic.Control.CallSub(Load_flexgrid_new,"iMode",0)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_default_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.cmd_default_click.end
+
+program.sub.cmd_save_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_save_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sSeq.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iC.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+'V.Local.iTime.Declare(Long)
+'V.Local.sMsg.Declare(String)
+
+'F.Intrinsic.Debug.TimerStart("test")
+
+F.Intrinsic.Control.If(V.Global.bDirty,=,True)
+	F.Intrinsic.Control.CallSub(Order_rows_new)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_auto_number.Value,=,1)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Math.Sub(V.Screen.F_Dispatch!gsfx_jobs.Rows,2,V.Local.iC)
+	V.uGlobal.uTempGrid.Redim(0,V.Local.iC)
+	'load grid data to UDT
+	Gui.F_Dispatch.gsfx_jobs.ExportToUDT(V.uGlobal.uTempGrid,"0*!*4*!*5*!*6*!*7*!*8*!*9*!*11*!*12*!*13*!*14*!*15*!*16*!*17*!*18*!*19*!*20*!*21*!*22*!*23*!*24*!*25","Row*!*Part*!*Job*!*OrigDueDate*!*DueDate*!*Description*!*Lbs*!*Campaign*!*Qty*!*UoM*!*CustName*!*MasterSpec*!*Structure*!*FlatWidth*!*Category*!*SchedStart*!*Sfx*!*Seq*!*Priority*!*SchedEnd*!*FGStyle*!*OrigCampaign",1,-1,False)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uTempGrid!SeqRes,V.Global.sWC)
+
+	F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uTempGrid.UBound,1)
+		F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!Row.IsNumeric,=,False)
+			V.uGlobal.uTempGrid(V.Local.iC)!Row.Set(-1)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+
+	F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uTempGrid!Row,-1)
+	F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uTempGrid)
+	F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uTempGrid!Row,False)
+F.Intrinsic.Control.EndIf
+
+'Delete any duplicate that may have slipped through in the temp grid
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uTempGrid!Job,V.uGlobal.uTempGrid!Sfx,V.uGlobal.uTempGrid!Seq)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uTempGrid)
+
+'F.Intrinsic.String.Concat("SELECT * FROM ATG_APSV3_JBSORT WHERE SeqRes = '",V.Global.sWC,"'",V.Local.sQuery)
+'F.ODBC.Connection!conX.OpenLocalRecordsetRW("rstSort",V.Local.sQuery)
+'	F.Intrinsic.Variable.SaveUDTToRecordset("conX","rstSort","V.uGlobal.uTempGrid")
+'F.ODBC.conX!rstSort.Close
+
+F.Intrinsic.UI.InvokeWaitDialog("Now saving dispatch list.","Saving List")
+
+F.Intrinsic.String.Concat("DELETE FROM ATG_APSV3_JBSORT_V1 where SeqRes = '",V.Global.sWC,"'",V.Local.sQuery)
+F.ODBC.Connection!conX.Execute(V.Local.sQuery)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uTempGrid.UBound,1)
+	F.Intrinsic.String.Concat("SELECT * FROM ATG_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Global.sWC,"' AND Job = '",V.uGlobal.uTempGrid(V.Local.iC)!Job,"' AND Sfx = '",V.uGlobal.uTempGrid(V.Local.iC)!Sfx,"' AND Seq = '",V.uGlobal.uTempGrid(V.Local.iC)!Seq,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRW("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,False)
+		F.Intrinsic.String.Concat("Delete FROM ATG_APSV3_JBSORT_V1 WHERE SeqRes='",V.Global.sWC,"'AND Job='",V.uGlobal.uTempGrid(V.Local.iC)!Job,"'AND Sfx='",V.uGlobal.uTempGrid(V.Local.iC)!Sfx,"'AND Seq='",V.uGlobal.uTempGrid(V.Local.iC)!Seq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.Execute(V.Local.sQuery)
+	F.Intrinsic.Control.Endif
+
+	F.ODBC.conX!rst.AddNew
+	F.ODBC.conX!rst.Set!SeqRes(V.uGlobal.uTempGrid(V.Local.iC)!SeqRes)
+	F.ODBC.conX!rst.Set!Row(V.uGlobal.uTempGrid(V.Local.iC)!Row)
+	F.ODBC.conX!rst.Set!Part(V.uGlobal.uTempGrid(V.Local.iC)!Part)
+	F.ODBC.conX!rst.Set!Job(V.uGlobal.uTempGrid(V.Local.iC)!Job)
+	F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!OrigDueDate,<>,"")
+		F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!OrigDueDate,<>,"00/00/00")
+			F.ODBC.conX!rst.Set!OrigDueDate(V.uGlobal.uTempGrid(V.Local.iC)!OrigDueDate)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!DueDate,<>,"")
+		F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!DueDate,<>,"00/00/00")
+			F.Intrinsic.String.Format(V.uGlobal.uTempGrid(V.Local.iC)!DueDate,"MM/DD/YYYY",V.uGlobal.uTempGrid(V.Local.iC)!DueDate)
+			F.ODBC.conX!rst.Set!DueDate(V.uGlobal.uTempGrid(V.Local.iC)!DueDate)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Set!Description(V.uGlobal.uTempGrid(V.Local.iC)!Description)
+	F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!Lbs,<>,"")
+		F.ODBC.conX!rst.Set!Lbs(V.uGlobal.uTempGrid(V.Local.iC)!Lbs)
+	F.Intrinsic.Control.Else
+		F.ODBC.conX!rst.Set!Lbs(0)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Set!Campaign(V.uGlobal.uTempGrid(V.Local.iC)!Campaign)
+	F.ODBC.conX!rst.Set!CustName(V.uGlobal.uTempGrid(V.Local.iC)!CustName)
+	F.Intrinsic.Control.CallSub(Get_custno,"sCust",V.uGlobal.uTempGrid(V.Local.iC)!CustName,"sJob",V.uGlobal.uTempGrid(V.Local.iC)!Job)
+	F.ODBC.conX!rst.Set!CustNo(V.Args.sCustNo)
+	F.ODBC.conX!rst.Set!MasterSpec(V.uGlobal.uTempGrid(V.Local.iC)!MasterSpec)
+	F.ODBC.conX!rst.Set!Structure(V.uGlobal.uTempGrid(V.Local.iC)!Structure)
+	F.ODBC.conX!rst.Set!Category(V.uGlobal.uTempGrid(V.Local.iC)!Category)
+	F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!SchedStart,<>,"")
+		F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!SchedStart,<>,"00/00/00")
+			F.ODBC.conX!rst.Set!SchedStart(V.uGlobal.uTempGrid(V.Local.iC)!SchedStart)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Set!Sfx(V.uGlobal.uTempGrid(V.Local.iC)!Sfx)
+	F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!Seq.IsNumeric,=,True)
+		F.Intrinsic.String.LPad(V.uGlobal.uTempGrid(V.Local.iC)!Seq,"0",6,V.Local.sSeq)
+		F.ODBC.conX!rst.Set!Seq(V.Local.sSeq)
+	F.Intrinsic.Control.Else
+		F.ODBC.conX!rst.Set!Seq("000100")
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Set!Priority(V.uGlobal.uTempGrid(V.Local.iC)!Priority)
+	F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!SchedEnd,<>,"")
+		F.Intrinsic.Control.If(V.uGlobal.uTempGrid(V.Local.iC)!SchedEnd,<>,"00/00/00")
+			F.ODBC.conX!rst.Set!SchedEnd(V.uGlobal.uTempGrid(V.Local.iC)!SchedEnd)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Set!Comp(V.uGlobal.uTempGrid(V.Local.iC)!Comp)
+	F.ODBC.conX!rst.Update
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.UI.InvokeWaitDialog("Now posting changes to job headers.","Posting Changes")
+
+F.Intrinsic.Control.CallSub(Cmd_updatecampaign_click)
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.CallSub(Delete_lock)
+
+'F.Intrinsic.Debug.TimerElapsed("test",V.Local.iTime)
+'F.Intrinsic.String.Concat(V.Ambient.CurrentSubroutine," took ",V.Local.iTime," seconds.",V.Local.sMsg)
+'F.Intrinsic.UI.Msgbox(V.Local.sMsg)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_save_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.cmd_save_click.end
+
+Program.Sub.initialize_flexgrid.Start
+F.Intrinsic.Control.SetErrorHandler("initialize_flexgrid_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iCol.Declare(Long)
+V.Local.iLtBlue.Declare(Long)
+V.Local.iLtGreen.Declare(Long)
+V.Local.iGrey.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+Gui.F_Dispatch.gsfx_jobs.Sorting(True)
+Gui.F_Dispatch.gsfx_jobs.Cols(26)
+Gui.F_Dispatch.gsfx_jobs.Rows(2)
+'Gui.F_Dispatch.chk_columns.Value(1)
+Gui.F_Columns..Visible(false)
+
+'F.Intrinsic.UI.RGB(229,239,247,V.Local.iLtBlue)
+'F.Intrinsic.UI.RGB(237,255,207,V.Local.iLtGreen)
+
+F.Intrinsic.UI.RGB(229,239,247,V.Local.iLtBlue)
+F.Intrinsic.UI.RGB(180,255,150,V.Local.iLtGreen)
+F.Intrinsic.UI.RGB(222,222,222,V.Local.iGrey)
+
+F.Intrinsic.Control.For(V.Local.iCol,0,25,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(1,V.Local.iCol,"Format","Alignment",2)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(1,V.Local.iCol,"Type","Locked",True)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,0,"Order")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(1,0,"")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(2,0,"")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(3,0,"")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(4,0,"Part")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(5,0,"Job")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(6,0,"Orig Due Date")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(7,0,"Due Date")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(8,0,"Description")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(9,0,"Lbs/WO")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(10,0,"Running Lbs Total")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(11,0,"Campaign")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(12,0,"Qty")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(13,0,"UoM")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(14,0,"Customer")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(15,0,"Master Spec")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(16,0,"Structure")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(17,0,"Flat Width")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(18,0,"Category")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(19,0,"Sched Start")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(20,0,"Suffix")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(21,0,"Seq")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(22,0,"Priority")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(23,0,"Sched End")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,0,"App Style")
+Gui.F_Dispatch.gsfx_jobs.TextMatrix(25,0,"OrigCampaign")
+
+Gui.F_Dispatch.dlist_column.AddItem("Part",4)
+Gui.F_Dispatch.dlist_column.AddItem("Job",5)
+Gui.F_Dispatch.dlist_column.AddItem("Orig Due Date",6)
+Gui.F_Dispatch.dlist_column.AddItem("Due Date",7)
+Gui.F_Dispatch.dlist_column.AddItem("Description",8)
+Gui.F_Dispatch.dlist_column.AddItem("Lbs/WO",9)
+Gui.F_Dispatch.dlist_column.AddItem("Running Lbs Total",10)
+Gui.F_Dispatch.dlist_column.AddItem("Campaign",11)
+Gui.F_Dispatch.dlist_column.AddItem("Qty",12)
+Gui.F_Dispatch.dlist_column.AddItem("UoM",13)
+Gui.F_Dispatch.dlist_column.AddItem("Customer",14)
+Gui.F_Dispatch.dlist_column.AddItem("Master Spec",15)
+Gui.F_Dispatch.dlist_column.AddItem("Structure",16)
+Gui.F_Dispatch.dlist_column.AddItem("Flat Width",17)
+Gui.F_Dispatch.dlist_column.AddItem("Category",18)
+Gui.F_Dispatch.dlist_column.AddItem("Sched Start Date",19)
+Gui.F_Dispatch.dlist_column.AddItem("Suffix",20)
+Gui.F_Dispatch.dlist_column.AddItem("Sequence",21)
+Gui.F_Dispatch.dlist_column.AddItem("Priority",22)
+Gui.F_Dispatch.dlist_column.AddItem("Sched End Date",23)
+
+'line has not been ordered and seq not finished or box not checked
+'Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,0,"Format","Numeric",True)
+'Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,0,"Type","Locked",True)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,0,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,1,"Type","Command","+")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,1,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,2,"Type","Command","Move to Top")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,2,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,3,"Type","Locked","True")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,3,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,3,"Color","Back",V.Local.iGrey)
+
+F.Intrinsic.Control.For(V.Local.iCol,4,25,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,V.Local.iCol,"Format","Alignment",2)
+	F.Intrinsic.Control.If(V.Local.iCol,=,11)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,11,"Type","Dropdownlist",V.Global.sCampaigns)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.ElseIf(V.Local.iCol,=,7)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,7,"Type","DatePicker","")
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,V.Local.iCol,"Type","Locked",True)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(2,V.Local.iCol,"Color","Back",V.Local.iLtBlue)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+
+'line has not been ordered and previous seq has been completed
+'Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,0,"Format","Numeric",True)
+'Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,0,"Type","Locked",True)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,0,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,1,"Type","Command","+")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,1,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,2,"Type","Command","Move to Top")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,2,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,3,"Type","Locked","True")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,3,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,3,"Color","Back",V.Local.iGrey)
+
+F.Intrinsic.Control.For(V.Local.iCol,4,6,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Format","Alignment",2)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Type","Locked",True)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Color","Back",V.Local.iLtGreen)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+F.Intrinsic.Control.For(V.Local.iCol,7,25,1)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Format","Alignment",2)
+	F.Intrinsic.Control.If(V.Local.iCol,=,11)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,11,"Type","Dropdownlist",V.Global.sCampaigns)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.ElseIf(V.Local.iCol,=,7)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,7,"Type","DatePicker","")
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Type","Locked",True)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(3,V.Local.iCol,"Color","Back",V.Local.iLtBlue)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+'line has been ordered but prev seq not complete
+'Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,0,"Format","Numeric",True)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,0,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,1,"Type","Command","^")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,1,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,2,"Type","Command","Move to Top")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,2,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,3,"Type","Command","v")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,3,"Format","Alignment",4)
+
+F.Intrinsic.Control.For(V.Local.iCol,4,25,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,V.Local.iCol,"Format","Alignment",2)
+	F.Intrinsic.Control.If(V.Local.iCol,=,11)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,11,"Type","Dropdownlist",V.Global.sCampaigns)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.ElseIf(V.Local.iCol,=,7)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,7,"Type","DatePicker","")
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,V.Local.iCol,"Type","Locked",True)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(4,V.Local.iCol,"Color","Back",V.Color.White)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+'line has been ordered and prev seq is complete
+'Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,0,"Format","Numeric",True)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,0,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,1,"Type","Command","^")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,1,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,2,"Type","Command","Move to Top")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,2,"Format","Alignment",4)
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,3,"Type","Command","v")
+Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,3,"Format","Alignment",4)
+
+F.Intrinsic.Control.For(V.Local.iCol,4,6,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Format","Alignment",2)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Type","Locked",True)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Color","Back",V.Local.iLtGreen)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+F.Intrinsic.Control.For(V.Local.iCol,7,25,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Format","Alignment",2)
+	F.Intrinsic.Control.If(V.Local.iCol,=,11)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,11,"Type","Dropdownlist",V.Global.sCampaigns)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.ElseIf(V.Local.iCol,=,7)
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,7,"Type","DatePicker","")
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Type","Locked",False)
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Type","Locked",True)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(5,V.Local.iCol,"Color","Back",V.Color.White)
+F.Intrinsic.Control.Next(V.Local.iCol)
+
+Gui.F_Dispatch.gsfx_jobs.FixedRows(1)
+F.Intrinsic.Control.CallSub(Get_settings)
+Gui.F_Dispatch.gsfx_jobs.SetColumnPercentages(V.Args.sPercents)
+'Gui.F_Dispatch.gsfx_jobs.SetProperty("selectionmode",2)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("initialize_flexgrid_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+Program.Sub.initialize_flexgrid.End
+
+program.sub.cmd_search_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_search_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.CallSub(Delete_lock)
+F.Intrinsic.Control.CallSub(Load_flexgrid_new,"iMode",1)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_search_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.cmd_search_click.end
+
+program.sub.f_dispatch_resize.start
+F.Intrinsic.Control.SetErrorHandler("f_dispatch_resize_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iX.Declare(Long)
+V.Local.iY.Declare(Long)
+V.Local.iGX.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.If(V.Screen.F_Dispatch.Width,<,15360)
+	Gui.F_Dispatch..Size(15660,11000)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Screen.F_Dispatch.Height,<,10695)
+	Gui.F_Dispatch..Size(15660,11000)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Math.Sub(V.Screen.F_Dispatch.Width,540,V.Local.iX)
+F.Intrinsic.Math.Sub(V.Screen.F_Dispatch.Height,2720,V.Local.iY)
+
+Gui.F_Dispatch.gsfx_jobs.Size(V.Local.iX,V.Local.iY)
+
+F.Intrinsic.Math.Add(V.Local.iX,200,V.Local.iX)
+F.Intrinsic.Math.Sub(V.Local.iX,2500,V.Local.iX)
+
+Gui.F_Dispatch.cmd_Default.Position(V.Local.iX,400)
+
+F.Intrinsic.Math.Sub(V.Local.iX,2700,V.Local.iX)
+
+Gui.F_Dispatch.cmd_Reset.Position(V.Local.iX,400)
+
+F.Intrinsic.Math.Add(V.Screen.F_Dispatch!gsfx_jobs.Height,V.Screen.F_Dispatch!gsfx_jobs.Top,V.Local.iY)
+F.Intrinsic.Math.Add(V.Local.iY,200,V.Local.iY)
+
+Gui.F_Dispatch.cmd_Save.Position(200,V.Local.iY)
+Gui.F_Dispatch.cmd_order.Position(2300,V.Local.iY)
+Gui.F_Dispatch.cmd_searchtool.Position(11415,V.Local.iY)
+
+F.Intrinsic.Math.Sub(V.Screen.F_Dispatch.Width,2500,V.Local.iX)
+Gui.F_Dispatch.cmd_print.Position(V.Local.iX,V.Local.iY)
+F.Intrinsic.Math.Sub(V.Local.iX,2100,V.Local.iX)
+Gui.F_Dispatch.cmd_updateCampaign.Position(V.Local.iX,V.Local.iY)
+
+F.Intrinsic.Math.Sub(V.Local.iY,150,V.Local.iY)
+Gui.F_Dispatch.lbl_column.Position(8800,V.Local.iY)
+Gui.F_Dispatch.lbl_searchtxt.Position(5700,V.Local.iY)
+
+F.Intrinsic.Math.Add(V.Local.iY,200,V.Local.iY)
+Gui.F_Dispatch.txt_search.Position(5700,V.Local.iY)
+Gui.F_Dispatch.dlist_column.Position(8800,V.Local.iY)
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("f_dispatch_resize_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.f_dispatch_resize.end
+
+Program.Sub.Load_UDT.Start
+F.Intrinsic.Control.SetErrorHandler("Load_UDT_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sWC.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.dTempDate.Declare(Date)
+V.Local.iC.Declare(Long)
+V.Local.iC2.Declare(Long)
+V.Local.iIndex.Declare(Long)
+V.Local.bPrev.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+V.Local.sWC.Set(V.Screen.F_Dispatch!dlist_WC.Text)
+
+V.uGlobal.uJobs.Redim(0,0)
+F.Intrinsic.String.Concat("SELECT APSV3_JBLines.Job, APSV3_JBLines.Sfx, APSV3_JBLines.Seq, APSV3_JBLines.SeqRes, APSV3_JBMaster.Description, APSV3_JBMaster.Part, APSV3_JBMaster.CustName, APSV3_JBMaster.CustNo, APSV3_JBMaster.Priority, APSV3_JBLines.StartDate as schedstart, APSV3_JBMaster.SchedEnd, APSV3_JBLines.ComplDate from APSV3_JBLines JOIN APSV3_JBMaster ON APSV3_JBLines.JOB = APSV3_JBMaster.JOB and APSV3_JBLines.SFX = APSV3_JBMaster.SFX where APSV3_JBLines.ComplDate is null and APSV3_JBLines.SeqType = 1 AND APSV3_JBLines.SeqRes = '",V.Local.sWC,"'  and APSV3_JBLines.Seq <> 996000 and APSV3_JBLines.Seq <> 998500 ORDER BY APSV3_JBLines.StartDate, APSV3_JBLines.DueDate, APSV3_JBLines.Job, APSV3_JBLines.Sfx, APSV3_JBLines.Seq",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uJobs",False)
+F.ODBC.conX!rst.Close
+
+V.uGlobal.uSorted.Redim(0,0)
+F.Intrinsic.String.Concat("SELECT * FROM ATG_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Local.sWC,"' ORDER BY Row ",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uSorted",False)
+F.ODBC.conX!rst.Close
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!Sorted,True)
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uSorted!Job,V.uGlobal.uSorted!Sfx,V.uGlobal.uSorted!Seq)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uSorted)
+
+'if any jobs are already sorted, match the comp fields
+F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,<>,-1)
+	F.Global.APS.PSC(V.Global.uSorted!Job,V.Global.uSorted!Sfx,V.Global.uSorted!Seq,V.Global.uSorted!Comp)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!FGStyle,4)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!TempStyle,4)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uSorted!Comp,"True",V.uGlobal.uSorted!FGStyle,5)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uSorted!Comp,"True",V.uGlobal.uSorted!TempStyle,5)
+F.Intrinsic.Control.EndIf
+
+'order the jobs udt by job, sfx, seq and loop
+'if the prev seq was completed, mark the comp field for the current job as true
+F.Global.APS.PSC(V.Global.uJobs!Job,V.Global.uJobs!Sfx,V.Global.uJobs!Seq,V.Global.uJobs!Comp)
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!FGStyle,2)
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!TempStyle,2)
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uJobs!Comp,"True",V.uGlobal.uJobs!FGStyle,3)
+F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uJobs!Comp,"True",V.uGlobal.uJobs!TempStyle,3)
+
+'get the data for the extra columns
+F.Intrinsic.Control.CallSub(Get_job_info)
+F.Intrinsic.Control.CallSub(Get_part_info)
+F.Intrinsic.Control.CallSub(Get_router_setup)
+'F.Intrinsic.Control.CallSub(Get_setup_lines)
+
+'add something here to make sure zeros are included in the date strings
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Lbs,=,"")
+		V.uGlobal.uJobs(V.Local.iC)!Lbs.Set(0)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uJobs!Job,False,V.uGlobal.uJobs!Sfx,False)
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uJobs!Job,V.uGlobal.uJobs!Sfx)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uJobs,V.uGlobal.uOrig,False)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+	F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iIndex)
+	V.uGlobal.uSorted(V.Local.iC)!Row.Set(V.Local.iIndex)
+	F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!Seq,<>,"")
+		F.Intrinsic.Variable.UDTSetMemberFormat(V.uGlobal.uSorted!Seq,"###000")
+	F.Intrinsic.Control.EndIf
+	'delete the sorted job from the list of unsorted jobs
+	F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uJobs!Job,V.uGlobal.uSorted(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uSorted(V.Local.iC)!Sfx,V.uGlobal.uJobs!Seq,V.uGlobal.uSorted(V.Local.iC)!Seq,V.uGlobal.uJobs!Part,V.uGlobal.uSorted(V.Local.iC)!Part)
+F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+F.Intrinsic.Variable.UDTSetMemberFormat(V.uGlobal.uJobs!SchedStart,"YYYY/MM/DD")
+F.Intrinsic.Variable.UDTSetMemberFormat(V.uGlobal.uJobs!SchedEnd,"YYYY/MM/DD")
+F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uJobs!SchedStart,False,V.uGlobal.uJobs!SchedEnd,False)
+F.Intrinsic.Variable.UDTSetMemberFormat(V.uGlobal.uJobs!SchedStart,"MM/DD/YYYY")
+F.Intrinsic.Variable.UDTSetMemberFormat(V.uGlobal.uJobs!SchedEnd,"MM/DD/YYYY")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_UDT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Load_UDT.End
+
+program.sub.chk_auto_number_click.start
+F.Intrinsic.Control.SetErrorHandler("chk_auto_number_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.bOrdered.Declare(Boolean)
+V.Local.iTime.Declare(Long)
+V.Local.sMsg.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.If(V.Args.bOrdered,<>,V.Ambient.Null)
+	V.Local.bOrdered.Set(V.Args.bOrdered)
+F.Intrinsic.Control.Else
+	V.Local.bOrdered.Set(False)
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.Debug.TimerStart("test")
+
+V.Global.bAutoNum.Set(True)
+V.Local.iRows.Set(V.Screen.F_Dispatch!gsfx_jobs.Rows)
+F.Intrinsic.Math.Sub(V.Local.iRows,1,V.Local.iRows)
+V.Local.iC.Set(1)
+
+'if the grid is empty, just mark global variables
+F.Intrinsic.Control.If(V.uGlobal.uGrid.UBound,=,0)
+	F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_auto_number.Value,=,0)
+		V.Global.bAutoNum.Set(False)
+	F.Intrinsic.Control.Else
+		V.Global.bAutoNum.Set(True)
+	F.Intrinsic.Control.EndIf
+'if there are rows in the grid
+F.Intrinsic.Control.Else
+	'if the user wants to un-number the rows
+	F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_auto_number.Value,=,0)
+		V.Global.bAutoNum.Set(False)
+		Gui.F_Dispatch.gsfx_jobs.Visible(false)
+		F.Intrinsic.Control.For(V.Local.irow,1,V.Local.irows,1)
+			'read the style of the row, if it's sorted, leave the number, otherwise blank it out
+			Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+			F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+			'if blank rows are encountered, we can stop numbering
+			F.Intrinsic.Control.If(V.Local.sRow(0),=,"")
+				Gui.F_Dispatch.gsfx_jobs.Visible(true)
+				F.Intrinsic.Control.If(V.Local.bOrdered,=,True)
+					F.Intrinsic.Control.ExitSub
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.If(V.Local.sRow(24).Long,>,3)
+				Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,V.Local.iRow,V.Local.iC)
+			F.Intrinsic.Control.Else
+				Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,V.Local.iRow,"")
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+		F.Intrinsic.Control.Next(V.Local.iRow)
+		Gui.F_Dispatch.gsfx_jobs.Visible(true)
+	'if the user wants to number the rows
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.Visible(false)
+		F.Intrinsic.Control.For(V.Local.irow,1,V.Local.irows,1)
+			Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,V.Local.iRow,V.Local.iC)
+			F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+		F.Intrinsic.Control.Next(V.Local.iRow)
+		Gui.F_Dispatch.gsfx_jobs.Visible(true)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("chk_auto_number_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.chk_auto_number_click.end
+
+Program.Sub.Update_Table.Start
+F.Intrinsic.Control.SetErrorHandler("Update_Table_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sDeletions.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.sSeq.Declare(String)
+V.Local.sMsg.Declare(String)
+V.Local.bExists.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.ODBC.Connection!conX.TableExists("ATG_APSV3_JBSORT_V1",V.Local.bExists)
+
+'if the table exists, loop through all the records
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.ODBC.Connection!conX.OpenRecordsetRW("rst","ATG_APSV3_JBSORT_V1")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!Seq,<>,"")
+			F.Intrinsic.String.Format(V.ODBC.conX!rst.FieldValTrim!Seq,"###000",V.Local.sSeq)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Concat(" SELECT ComplDate, SeqRes FROM APSV3_JBLines WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.Local.sSeq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst2",V.Local.sQuery)
+		'if the record exists and has a completion date listed, delete the record
+		F.Intrinsic.Control.If(V.ODBC.conX!rst2.EOF,<>,True)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst2.FieldValTrim!ComplDate,<>,"")
+				F.Intrinsic.String.Concat(V.Local.sDeletions,"*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+			F.Intrinsic.Control.EndIf
+			'if the record exists but the seqres does not match what was previously saved, delete the record
+			F.Intrinsic.String.Concat(V.ODBC.conX!rst.FieldValTrim!Job," ",V.ODBC.conX!rst.FieldValTrim!Sfx," ",V.ODBC.conX!rst.FieldValTrim!Seq," ",V.ODBC.conX!rst.FieldValTrim!SeqRes," ",V.ODBC.conX!rst2.FieldValTrim!SeqRes,V.Local.sMsg)
+			F.Intrinsic.Debug.Print(V.Local.sMsg)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!SeqRes,<>,V.ODBC.conX!rst2.FieldValTrim!SeqRes)
+				F.Intrinsic.String.Concat(V.Local.sDeletions,"*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			'if the record doesnt exist, delete it from the custom table
+			F.Intrinsic.String.Concat(V.Local.sDeletions,"*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst2.Close
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.EndIf
+
+'delete all marked sequences
+F.Intrinsic.String.Split(V.Local.sDeletions,"*!*",V.Local.sDeletions)
+F.Intrinsic.Control.For(V.Local.iC,1,V.Local.sDeletions.UBound,1)
+	F.ODBC.Connection!conX.Execute(V.Local.sDeletions(V.Local.iC))
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Update_Table_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+Program.Sub.Update_Table.End
+
+Program.Sub.Load_Grid_UDT.Start
+F.Intrinsic.Control.SetErrorHandler("Load_Grid_UDT_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iIndex.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Math.Sub(V.Screen.F_Dispatch!gsfx_jobs.Rows,2,V.Local.iC)
+V.uGlobal.uGrid.Redim(0,V.Local.iC)
+
+'load grid data to UDT
+Gui.F_Dispatch.gsfx_jobs.ExportToUDT(V.uGlobal.uGrid,"0*!*4*!*5*!*6*!*7*!*8*!*9*!*11*!*12*!*13*!*14*!*15*!*16*!*17*!*18*!*19*!*20*!*21*!*22*!*23*!*24*!*25","Row*!*Part*!*Job*!*OrigDueDate*!*DueDate*!*Description*!*Lbs*!*Campaign*!*Qty*!*UoM*!*CustName*!*MasterSpec*!*Structure*!*FlatWidth*!*Category*!*SchedStart*!*Sfx*!*Seq*!*Priority*!*SchedEnd*!*FGStyle*!*OrigCampaign",1,-1,False)
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uGrid!SeqRes,V.Global.sWC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_Grid_UDT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_Backup.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Load_Grid_UDT.End
+
+program.sub.cmd_print_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_print_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sPath.Declare(String)
+V.Local.iRet.Declare(Long)
+V.Local.iPID.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.UI.Msgbox("Do you want to save?","Save",4,V.Local.iRet)
+F.Intrinsic.Control.If(V.Local.iRet,=,6)
+	F.Intrinsic.Control.CallSub(Cmd_save_click)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Concat(V.Caller.PluginsDir,"\GAB\GAS\ATG_APS_GEN_REPORT_V1.gas",V.Local.sPath)
+F.Global.General.CallAsyncGAS(V.Local.sPath,V.Local.iPID)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_print_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmd_print_click.end
+
+program.sub.chk_previous_seq_click.start
+F.Intrinsic.Control.SetErrorHandler("chk_previous_seq_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iRows.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.iC.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+'V.Local.iTime.Declare(Long)
+'V.Local.sMsg.Declare(String)
+
+'F.Intrinsic.Debug.TimerStart("test")
+
+F.Intrinsic.Control.If(V.uGlobal.uGrid.UBound,<>,0)
+	Gui.F_Dispatch.gsfx_jobs.Visible(False)
+
+
+'	F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_previous_seq.Value,=,1)
+'		Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uGrid","Row::0*!*Job::4*!*Sfx::5*!*Seq::6*!*Priority::7*!*DueDate::8*!*Part::9*!*Description::10*!*CustName::11*!*SchedStart::12*!*SchedEnd::13*!*FGStyle::14",-1)
+'	F.Intrinsic.Control.Else
+'		F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uGrid.UBound,1)
+'			V.uGlobal.uGrid(V.Local.iC)!TempStyle.Set(V.uGlobal.uGrid(V.Local.iC)!FGStyle)
+'			F.Intrinsic.Control.If(V.uGlobal.uGrid(V.Local.iC)!FGStyle,>,3)
+'				V.uGlobal.uGrid(V.Local.iC)!FGStyle.Set(4)
+'			F.Intrinsic.Control.Else
+'				V.uGlobal.uGrid(V.Local.iC)!FGStyle.Set(2)
+'			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Next(V.Local.iC)
+'		Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uGrid","Row::0*!*Job::4*!*Sfx::5*!*Seq::6*!*Priority::7*!*DueDate::8*!*Part::9*!*Description::10*!*CustName::11*!*SchedStart::12*!*SchedEnd::13*!*TempStyle::14",-1)
+'	F.Intrinsic.Control.EndIf
+
+	'check
+	F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_previous_seq.Value,=,1)
+		V.Local.iRows.Set(V.Screen.F_Dispatch!gsfx_jobs.Rows)
+		F.Intrinsic.Math.Sub(V.Local.iRows,1,V.Local.iRows)
+		F.Intrinsic.Control.For(V.Local.iRow,1,V.Local.iRows,1)
+			Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+			F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+			Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,V.Local.sRow(22).Long)
+		F.Intrinsic.Control.Next(V.Local.iRow)
+	'uncheck
+	F.Intrinsic.Control.Else
+		V.Local.iRows.Set(V.Screen.F_Dispatch!gsfx_jobs.Rows)
+		F.Intrinsic.Math.Sub(V.Local.iRows,1,V.Local.iRows)
+		F.Intrinsic.Control.For(V.Local.iRow,1,V.Local.iRows,1)
+			Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+			F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+			F.Intrinsic.Control.If(V.Local.sRow(22).Long,>,3)
+				Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,4)
+			F.Intrinsic.Control.Else
+				Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,2)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iRow)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Dispatch.gsfx_jobs.Visible(True)
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.Debug.TimerElapsed("test",V.Local.iTime)
+'F.Intrinsic.String.Concat(V.Ambient.CurrentSubroutine," took ",V.Local.iTime," seconds.",V.Local.sMsg)
+'F.Intrinsic.UI.Msgbox(V.Local.sMsg)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("chk_previous_seq_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.chk_previous_seq_click.end
+
+Program.Sub.Load_Grid_from_UDT.Start
+F.Intrinsic.Control.SetErrorHandler("Load_Grid_from_UDT_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iB.Declare(Long)
+V.Local.iC.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+Gui.F_Dispatch.gsfx_jobs.Rows(1)
+F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_previous_seq.Value,=,1)
+	Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uGrid","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+	F.Intrinsic.Control.CallSub(Chk_auto_number_click,"bOrdered",True)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uGrid.UBound,1)
+		V.uGlobal.uGrid(V.Local.iC)!TempStyle.Set(V.uGlobal.uGrid(V.Local.iC)!FGStyle)
+		F.Intrinsic.Control.If(V.uGlobal.uGrid(V.Local.iC)!FGStyle,>,3)
+			V.uGlobal.uGrid(V.Local.iC)!FGStyle.Set(4)
+		F.Intrinsic.Control.Else
+			V.uGlobal.uGrid(V.Local.iC)!FGStyle.Set(2)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+	Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uGrid","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+	F.Intrinsic.Control.CallSub(Chk_auto_number_click,"bOrdered",True)
+F.Intrinsic.Control.EndIf
+
+Gui.F_Dispatch.gsfx_jobs.FixedRows(1)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_Grid_from_UDT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Load_Grid_from_UDT.End
+
+Program.Sub.Down.Start
+F.Intrinsic.Control.SetErrorHandler("Down_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iRow2.Declare(Long)
+V.Local.iRows.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+'V.Local.iTime.Declare(Long)
+'V.Local.sMsg.Declare(String)
+
+'F.Intrinsic.Debug.TimerStart("test")
+
+V.Local.iRow.Set(V.Args.iRow)
+V.Local.iRows.Set(V.Args.iRows)
+
+F.Intrinsic.Math.Add(V.Local.iRow,1,V.Local.iRow2)
+
+'make sure the row is not in the bottom of the list
+F.Intrinsic.Control.If(V.Local.iRow,<>,V.Local.iRows)
+
+	Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+	F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+
+	'if the row is already sorted, swap with lower row
+	F.Intrinsic.Control.If(V.Local.sRow(24),=,"5")
+		Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow2,V.Local.sRow)
+		F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+		
+		F.Intrinsic.Control.If(V.Local.sRow(24),=,"5")
+			'if the lower row is sorted as well
+			Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-2)
+		F.Intrinsic.Control.ElseIf(V.Local.sRow(24),=,"4")
+			'if the lower row is sorted as well
+			Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-2)
+		F.Intrinsic.Control.EndIf
+
+	'if the row is already sorted, swap with lower row
+	F.Intrinsic.Control.ElseIf(V.Local.sRow(24),=,"4")
+		Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow2,V.Local.sRow)
+		F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+
+		F.Intrinsic.Control.If(V.Local.sRow(24),=,"5")
+			'if the lower row is sorted as well
+			Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-2)
+		F.Intrinsic.Control.ElseIf(V.Local.sRow(24),=,"4")
+			'if the lower row is sorted as well
+			Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-2)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+
+'F.Intrinsic.Debug.TimerElapsed("test",V.Local.iTime)
+'F.Intrinsic.String.Concat(V.Ambient.CurrentSubroutine," took ",V.Local.iTime," seconds.",V.Local.sMsg)
+'F.Intrinsic.UI.Msgbox(V.Local.sMsg)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Down_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Down.End
+
+program.sub.cmd_searchtool_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_searchtool_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iCol.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+'V.Local.iTime.Declare(Long)
+'V.Local.sMsg.Declare(String)
+
+'F.Intrinsic.Debug.TimerStart("test")
+
+Gui.F_Dispatch.gsfx_jobs.SetProperty("selectionmode",2)
+
+F.Intrinsic.Control.If(V.uGlobal.uGrid.UBound,<>,0)
+	F.Intrinsic.Control.If(V.Screen.F_Dispatch!txt_search.Text,<>,"")
+		F.Intrinsic.Control.If(V.Screen.F_Dispatch!dlist_column.ListIndex,<>,-1)
+
+			F.Intrinsic.UI.InvokeWaitDialog("Searching for text. Please wait.","Searching List")
+
+			'gather the current information from the screen
+			'F.Intrinsic.Control.CallSub(Load_grid_udt)
+			Gui.F_Dispatch.gsfx_jobs.ExportToUDT(V.uGlobal.uGrid,"0*!*4*!*5*!*6*!*7*!*8*!*9*!*11*!*12*!*13*!*14*!*15*!*16*!*17*!*18*!*19*!*20*!*21*!*22*!*23*!*24*!*25","Row*!*Part*!*Job*!*OrigDueDate*!*DueDate*!*Description*!*Lbs*!*Campaign*!*Qty*!*UoM*!*CustName*!*MasterSpec*!*Structure*!*FlatWidth*!*Category*!*SchedStart*!*Sfx*!*Seq*!*Priority*!*SchedEnd*!*FGStyle*!*OrigCampaign",1,-1,False)
+
+			F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uGrid!SeqRes,V.Global.sWC)
+			F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uGrid.UBound,1)
+				F.Intrinsic.Math.Add(V.Local.iC,1,V.uGlobal.uGrid(V.Local.iC)!Row)
+			F.Intrinsic.Control.Next(V.Local.iC)
+
+			F.Intrinsic.String.Trim(V.Screen.F_Dispatch!txt_search.Text,V.Local.sText)
+			
+			V.local.iCol.Set(V.Screen.F_Dispatch!dlist_column.ListIndex)
+
+			'determine which column should be queried
+			F.Intrinsic.Control.SelectCase(V.Local.icol)
+			F.Intrinsic.Control.Case(0)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Part,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(1)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Job,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(2)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!OrigDueDate,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(3)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!DueDate,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(4)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Description,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(5)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Lbs,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(6)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Lbs,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(7)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Campaign,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(8)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Qty,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(9)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!UoM,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(10)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!CustName,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(11)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!MasterSpec,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(12)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Structure,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(13)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!FlatWidth,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(14)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Category,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(15)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!SchedStart,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(16)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Sfx,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(17)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Seq,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(18)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Priority,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.Case(19)
+				F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!SchedEnd,V.Local.sText,2,V.Local.sReturn)
+			F.Intrinsic.Control.EndSelect
+
+			F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+				'see if the results match the results of the last run search
+				F.Intrinsic.Control.If(V.Global.sPrevReturn,<>,V.Local.sReturn)
+					V.Global.sPrevReturn.Set(V.Local.sReturn)
+					F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+					V.Global.iPrevIndex.Set(V.Local.sReturn(0))
+
+				F.Intrinsic.Control.Else
+					'if the result list is the same, check for the last used index
+					F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+					'loop through the returned index matches
+					F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+						'if a match is found, get the following index (if exists, if not get first index), exit for loop
+						F.Intrinsic.Control.If(V.Local.sReturn(V.Local.iC).Long,=,V.Global.iPrevIndex)
+							F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+							F.Intrinsic.Control.If(V.Local.iC,>,V.Local.sReturn.UBound)
+								V.Global.iPrevIndex.Set(V.Local.sReturn(0))
+							F.Intrinsic.Control.Else
+								V.Global.iPrevIndex.Set(V.Local.sReturn(V.Local.iC))
+							F.Intrinsic.Control.EndIf
+							F.Intrinsic.Control.ExitFor(V.Local.iC)
+						F.Intrinsic.Control.EndIf
+					F.Intrinsic.Control.Next(V.Local.iC)
+				F.Intrinsic.Control.EndIf
+
+				'highlight the row of the results index
+				V.Local.iRow.Set(V.uGlobal.uGrid(V.Global.iPrevIndex)!Row)
+				F.Intrinsic.Control.If(V.Local.iRow,=,0)
+					V.Local.iRow.Set(1)
+				F.Intrinsic.Control.EndIf
+				Gui.F_Dispatch.gsfx_jobs.RowSel(V.Local.iRow)
+				Gui.F_Dispatch.gsfx_jobs.TopRow(V.Local.iRow)
+									
+			F.Intrinsic.Control.EndIf
+
+			F.Intrinsic.UI.CloseWaitDialog
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.Debug.TimerElapsed("test",V.Local.iTime)
+'F.Intrinsic.String.Concat(V.Ambient.CurrentSubroutine," took ",V.Local.iTime," seconds.",V.Local.sMsg)
+'F.Intrinsic.UI.Msgbox(V.Local.sMsg)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_searchtool_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	F.Intrinsic.UI.CloseWaitDialog
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmd_searchtool_click.end
+
+program.sub.gsfx_jobs_lostfocus.start
+F.Intrinsic.Control.SetErrorHandler("gsfx_jobs_lostfocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+Gui.F_Dispatch.gsfx_jobs.Commit
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsfx_jobs_lostfocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.gsfx_jobs_lostfocus.end
+
+program.sub.gsfx_jobs_posttextmatrix.start
+F.Intrinsic.Control.SetErrorHandler("gsfx_jobs_posttextmatrix_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.bNum.Declare(Boolean)
+
+'F.Intrinsic.Control.If(V.Global.sCallingSub,=,"GSFX_JOBS_LOSTFOCUS")
+'	V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+'	F.Intrinsic.Control.ExitSub
+'F.Intrinsic.Control.ElseIf(V.Global.sCallingSub,=,"POPULATE_GRID_CAMPAIGN")
+'	V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+'	F.Intrinsic.Control.ExitSub
+'F.Intrinsic.Control.ElseIf(V.Global.sCallingSub,=,"LOAD_GRID_UDT")
+'	V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+'	F.Intrinsic.Control.ExitSub
+'F.Intrinsic.Control.EndIf
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.If(V.Args.Column,=,0)
+
+	V.Local.iRow.Set(V.Screen.F_Dispatch!gsfx_jobs.RowSel)
+	Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(0,V.Local.iRow,V.Local.sRow)
+
+	F.Intrinsic.Control.If(V.Local.sRow,=,"")
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	V.Local.bNum.Set(V.Local.sRow.IsNumeric)
+
+	F.Intrinsic.Control.If(V.Local.bNum,=,False)
+		F.Intrinsic.UI.Msgbox("Please enter a number.")
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,V.Local.iRow,"")
+	F.Intrinsic.Control.Else
+		V.Global.bDirty.Set(True)
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ElseIf(V.Args.Column,=,11)
+	F.Intrinsic.Control.CallSub(Gsfx_jobs_comboexit,"Key",V.Args.Key,"Column",V.Args.Column)
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsfx_jobs_posttextmatrix_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.gsfx_jobs_posttextmatrix.end
+
+Program.Sub.Order_Rows_New.Start
+F.Intrinsic.Control.SetErrorHandler("Order_Rows_New_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iC2.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.If(V.Global.bDirty,=,False)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.InvokeWaitDialog("Please wait while rows are ordered.","Ordering Rows")
+Gui.F_Dispatch.gsfx_jobs.Visible(False)
+Gui.F_Dispatch.gsfx_jobs.Commit
+
+F.Intrinsic.Control.CallSub(Load_grid_udt)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uGrid.UBound,1)
+	F.Intrinsic.Control.If(V.uGlobal.uGrid(V.Local.iC)!Row.IsNumeric,=,False)
+		V.uGlobal.uGrid(V.Local.iC)!Row.Set(-1)
+	F.Intrinsic.Control.Else
+		V.Local.iRow.Set(V.uGlobal.uGrid(V.Local.iC)!Row)
+		F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGrid!Job,V.uGlobal.uGrid(V.Local.iC)!Job,V.uGlobal.uGrid!Sfx,V.uGlobal.uGrid(V.Local.ic)!Sfx,V.Local.sReturn)
+		F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+			F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+			F.Intrinsic.Control.For(V.Local.iC2,0,V.Local.sReturn.UBound,1)
+				V.uGlobal.uGrid(V.Local.sReturn(V.Local.iC2))!Row.Set(V.Local.iRow)
+			F.Intrinsic.Control.Next(V.Local.iC2)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'split into 2 UDTs
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uGrid,V.uGlobal.uSortedGrid,False)
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uGrid,V.uGlobal.uUnsortedGrid,False)
+
+'flag each UDT to delete certain elements
+F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uSortedGrid!Row,-1)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uSortedGrid)
+
+F.Intrinsic.Variable.UDTFlagAll(V.uGlobal.uUnsortedGrid)
+F.Intrinsic.Variable.UDTMultiUnFlag(V.uGlobal.uUnSortedGrid!Row,-1)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uUnsortedGrid)
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uUnsortedGrid!Row,"")
+
+'sort the ordered UDT
+F.Intrinsic.Control.If(V.uGlobal.uSortedGrid.UBound,>,-1)
+	F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uSortedGrid!Row,False)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSortedGrid!Sorted,True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSortedGrid.UBound,1)
+	F.Intrinsic.Control.If(V.uGlobal.uSortedGrid(V.Local.iC)!FGStyle,=,3)
+		V.uGlobal.uSortedGrid(V.Local.iC)!FGStyle.Set(5)
+		V.uGlobal.uSortedGrid(V.Local.iC)!TempStyle.Set(5)
+	F.Intrinsic.Control.ElseIf(V.uGlobal.uSortedGrid(V.Local.iC)!FGStyle,=,2)
+		V.uGlobal.uSortedGrid(V.Local.iC)!FGStyle.Set(4)
+		V.uGlobal.uSortedGrid(V.Local.iC)!TempStyle.Set(5)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'make a copy of the sorted UDT for saving purposes
+F.Intrinsic.Variable.UDTCopy(V.uGlobal.uSortedGrid,V.uGlobal.uTempGrid,False)
+
+'concat the UDTs back together
+F.Intrinsic.Control.If(V.uGlobal.uUnsortedGrid.UBound,=,-1)
+	F.Intrinsic.Variable.UDTCopy(V.uGlobal.uSortedGrid,V.uGlobal.uGrid,False)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Variable.UDTCopy(V.uGlobal.uUnsortedGrid,V.uGlobal.uSortedGrid,True)
+	F.Intrinsic.Variable.UDTCopy(V.uGlobal.uSortedGrid,V.uGlobal.uGrid,False)
+F.Intrinsic.Control.EndIf
+
+'load the grid from the UDT
+F.Intrinsic.Control.CallSub(Load_grid_from_udt)
+V.Global.bDirty.Set(False)
+
+F.Intrinsic.Control.CallSub(Get_campaigns)
+
+Gui.F_Dispatch.gsfx_jobs.Visible(True)
+
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Order_Rows_New_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Order_Rows_New.End
+
+Program.Sub.Top.Start
+F.Intrinsic.Control.SetErrorHandler("Top_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iStyle.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+'V.Local.iTime.Declare(Long)
+'V.Local.sMsg.Declare(String)
+'
+'F.Intrinsic.Debug.TimerStart("test")
+
+V.Local.iRow.Set(V.Args.iRow)
+V.Local.iRows.Set(V.Args.iRows)
+
+'Gui.F_Dispatch.gsfx_jobs.moveRowToTop(V.Local.iRow)
+'V.Local.iRow.Set(1)
+
+Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+
+'change the row style to be sorted, either w/ completion or w/o
+F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_previous_seq.Value,=,1)
+	F.Intrinsic.Control.If(V.Local.sRow(24).Long,<,4)
+		F.Intrinsic.Math.Add(V.Local.sRow(24).Long,2,V.Local.iStyle)
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,V.Local.iRow,V.Local.iStyle)
+		Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,V.Local.iStyle)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	F.Intrinsic.Math.Mod(V.Local.sRow(24).Long,2,V.Local.iStyle)
+	F.Intrinsic.Control.If(V.Local.iStyle,=,0)
+	'if style is even (2 or 4)
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,V.Local.iRow,"4")
+		Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,4)
+	F.Intrinsic.Control.Else
+	'if style is odd (3 or 5)
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,V.Local.iRow,"5")
+		Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,4)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.DoUntil(V.Local.iRow,=,1)
+	Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-1)
+	F.Intrinsic.Math.Sub(V.Local.iRow,1,V.Local.iRow)
+F.Intrinsic.Control.Loop
+Gui.F_Dispatch.gsfx_jobs.TopRow(1)
+
+'F.Intrinsic.Debug.TimerElapsed("test",V.Local.iTime)
+'F.Intrinsic.String.Concat(V.Ambient.CurrentSubroutine," took ",V.Local.iTime," seconds.",V.Local.sMsg)
+'F.Intrinsic.UI.Msgbox(V.Local.sMsg)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Top_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+
+Program.Sub.Top.End
+
+Program.Sub.Up.Start
+F.Intrinsic.Control.SetErrorHandler("Up_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.sRow2.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iLastSorted.Declare(Long)
+V.Local.iStyle.Declare(Long)
+V.Local.bSorted.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+'V.Local.iTime.Declare(Long)
+'V.Local.sMsg.Declare(String)
+'
+'F.Intrinsic.Debug.TimerStart("test")
+
+V.Local.iRow.Set(V.Args.iRow)
+V.Local.iRows.Set(V.Args.iRows)
+
+Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+
+'change the row style to be sorted, either w/ completion or w/o
+F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_previous_seq.Value,=,1)
+	F.Intrinsic.Control.If(V.Local.sRow(24).Long,<,4)
+		F.Intrinsic.Math.Add(V.Local.sRow(24).Long,2,V.Local.iStyle)
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,V.Local.iRow,V.Local.iStyle)
+		Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,V.Local.iStyle)
+		V.Local.bSorted.Set(False)
+	F.Intrinsic.Control.Else
+		V.Local.bSorted.Set(True)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Local.sRow(24).Long,<,4)
+		V.Local.bSorted.Set(False)
+	F.Intrinsic.Control.Else
+		V.Local.bSorted.Set(True)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Math.Mod(V.Local.sRow(24).Long,2,V.Local.iStyle)
+	F.Intrinsic.Control.If(V.Local.iStyle,=,0)
+	'if style is even (2 or 4)
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,V.Local.iRow,"4")
+		Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,4)
+	F.Intrinsic.Control.Else
+	'if style is odd (3 or 5)
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(24,V.Local.iRow,"5")
+		Gui.F_Dispatch.gsfx_jobs.ApplyStyle(V.Local.iRow,4)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'check to see if moving the top row up
+F.Intrinsic.Control.If(V.Local.iRow,<>,1)
+	'if moving up a sorted, non-top row, simply swap
+	F.Intrinsic.Control.If(V.Local.bSorted,=,True)
+		Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-1)
+
+	'if moving up a non-sorted, non-top row
+	F.Intrinsic.Control.Else
+		'find the last sorted row in the list
+		F.Intrinsic.Control.For(V.Local.iC,1,V.Local.iRow,1)
+			Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iC,V.Local.sRow2)
+			F.Intrinsic.String.Split(V.Local.sRow2,"*!*",V.Local.sRow2)
+			F.Intrinsic.Control.If(V.Local.sRow2(24).Long,<,4)
+				V.Local.iLastSorted.Set(V.Local.iC)
+				F.Intrinsic.Control.ExitFor(V.Local.iC)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iC)
+
+		'set the row to the bottom of the sorted list
+		F.Intrinsic.Control.If(V.Local.iLastSorted,<>,0)
+			F.Intrinsic.Control.DoUntil(V.Local.iRow,=,V.Local.iLastSorted)
+				Gui.F_Dispatch.gsfx_jobs.MoveRow(V.Local.iRow,-1)
+				F.Intrinsic.Math.Sub(V.Local.iRow,1,V.Local.iRow)
+			F.Intrinsic.Control.Loop
+			Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,V.Local.iRow,V.Local.iRow)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+
+'F.Intrinsic.Debug.TimerElapsed("test",V.Local.iTime)
+'F.Intrinsic.String.Concat(V.Ambient.CurrentSubroutine," took ",V.Local.iTime," seconds.",V.Local.sMsg)
+'F.Intrinsic.UI.Msgbox(V.Local.sMsg)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Up_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+
+Program.Sub.Up.End
+
+Program.Sub.Load_Flexgrid_New.Start
+F.Intrinsic.Control.SetErrorHandler("Load_Flexgrid_New_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sWC.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sMsg.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iMode.Declare(Long)
+V.Local.iTime.Declare(Long)
+V.Local.bCheck.Declare(Boolean)
+V.Local.bComp.Declare(Boolean)
+V.Local.bLocked.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+Gui.F_Dispatch..Enabled(false)
+F.Intrinsic.UI.InvokeWaitDialog("Please wait while the dispatch list is loaded.","Creating List.")
+
+V.Local.iMode.Set(V.Args.iMode)
+
+V.Local.sWC.Set(V.Screen.F_Dispatch!dlist_WC.Text)
+F.Intrinsic.Control.If(V.Local.sWC,=,"")
+	F.Intrinsic.UI.Msgbox("Please select a workcenter or workgroup before continuing.")
+	Gui.F_Dispatch..Enabled(true)
+	F.Intrinsic.UI.CloseWaitDialog
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+V.Global.sWC.Set(V.Local.sWC)
+
+F.Intrinsic.Control.CallSub(Create_lock)
+V.Local.bLocked.Set(V.Args.bLock)
+F.Intrinsic.Control.If(V.Local.bLocked,=,True)
+	F.Intrinsic.UI.Msgbox("This workcenter is in use. Please selection a different work center.")
+	F.Intrinsic.UI.CloseWaitDialog
+	Gui.F_Dispatch..Enabled(true)
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+Gui.F_Dispatch.cmd_Save.Enabled(true)
+
+Gui.F_Dispatch.gsfx_jobs.Visible(False)
+Gui.F_Dispatch.gsfx_jobs.Rows(1)
+V.Local.bCheck.Set(V.Screen.F_Dispatch!chk_previous_seq.Value)
+F.Intrinsic.Control.CallSub(Load_udt)
+
+'default will ignore the custom table data
+F.Intrinsic.Control.If(V.Local.iMode,=,0)
+	V.uGlobal.uSorted.Redim(0,0)
+	Gui.F_Dispatch.gsfx_jobs.Visible(false)
+	Gui.F_Dispatch.gsfx_jobs.Rows(1)
+	F.Intrinsic.Control.If(V.Local.bCheck,=,True)
+		Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uJobs","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!FGStyle,2)
+		Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uJobs","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+	F.Intrinsic.Control.EndIf
+	Gui.F_Dispatch.gsfx_jobs.FixedRows(1)
+
+'load any saved data by row information and then remaining unsorted lines
+F.Intrinsic.Control.Else
+
+	F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,=,-1)
+		Gui.F_Dispatch.gsfx_jobs.Visible(false)
+		Gui.F_Dispatch.gsfx_jobs.Rows(1)
+		F.Intrinsic.Control.If(V.Local.bCheck,=,True)
+			Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uJobs","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!FGStyle,2)
+			Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uJobs","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+		F.Intrinsic.Control.EndIf
+		Gui.F_Dispatch.gsfx_jobs.FixedRows(1)
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.Visible(false)
+		Gui.F_Dispatch.gsfx_jobs.Rows(1)
+		F.Intrinsic.Control.If(V.Local.bCheck,=,True)
+			F.Intrinsic.Control.If(V.uGlobal.uJobs.UBound,<>,-1)
+				F.Intrinsic.Variable.UDTCopy(V.uGlobal.uJobs,V.uGlobal.uSorted,True)
+			F.Intrinsic.Control.EndIf
+			Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uSorted","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!FGStyle,4)
+			F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!FGStyle,2)
+			F.Intrinsic.Control.If(V.uGlobal.uJobs.UBound,<>,-1)
+				F.Intrinsic.Variable.UDTCopy(V.uGlobal.uJobs,V.uGlobal.uSorted,True)
+			F.Intrinsic.Control.EndIf
+			Gui.F_Dispatch.gsfx_jobs.LoadFromUDT("V.uGlobal.uSorted","Row::0*!*Part::4*!*Job::5*!*OrigDueDate::6*!*DueDate::7*!*Description::8*!*Lbs::9*!*Campaign::11*!*Qty::12*!*UoM::13*!*CustName::14*!*MasterSpec::15*!*Structure::16*!*FlatWidth::17*!*Category::18*!*SchedStart::19*!*Sfx::20*!*Seq::21*!*Priority::22*!*SchedEnd::23*!*FGStyle::24*!*OrigCampaign::25",-1)
+		F.Intrinsic.Control.EndIf
+		Gui.F_Dispatch.gsfx_jobs.FixedRows(1)
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_auto_number.Value,=,1)
+	F.Intrinsic.Control.CallSub(Chk_auto_number_click,"bOrdered",True)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Get_campaigns)
+
+Gui.F_Dispatch.gsfx_jobs.Visible(true)
+F.Intrinsic.Control.CallSub(Load_grid_udt)
+
+
+Gui.F_Dispatch..Enabled(true)
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_Flexgrid_New_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Load_Flexgrid_New.End
+
+Program.Sub.Check_Hooks.Start
+V.Local.sQuery.Declare(String)
+V.Local.sHook.Declare(String)
+V.Local.sFQN.Declare(String)
+V.Local.bFound.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+V.Local.bFound.Set(False)
+F.Intrinsic.String.LPad(V.Args.iHook,"0",9,V.Local.sHook)
+F.Intrinsic.String.Concat("Select script_name from HOOK_ASSOCIATION where ID = '",V.Local.sHook,"' and ACTIVE_FLAG = 'A' Order by Seq",V.Local.sQuery)
+
+F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+	V.Local.sFQN.Set(V.ODBC.conX!rst.FieldValTrim!Script_Name)
+	F.Intrinsic.Control.If(V.Local.sFQN,=,"ATG_APS_DISPATCH_GEN_IMPORT_V1.gas")
+		V.Local.bFound.Set(True)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.MoveNext
+F.Intrinsic.Control.Loop
+F.ODBC.conX!rst.Close
+
+F.Intrinsic.Control.If(V.Local.bFound,=,False)
+	F.Intrinsic.UI.Msgbox("Please attach ATG_APS_DISPATCH_GEN_IMPORT_V1.gas to hook 38110.")
+F.Intrinsic.Control.EndIf
+
+
+Program.Sub.Check_Hooks.End
+
+Program.Sub.Get_Campaigns.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Campaigns_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.iTotal.Declare(Long)
+V.Local.iC.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst","SELECT ID, PRIORITY FROM SCHED_GROUP ORDER BY ID")
+F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uCampaigns",False)
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rst.close
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uCampaigns.UBound,1)
+	'create a delimited string of campaigns
+	F.Intrinsic.Control.If(V.Local.iC,=,0)
+		V.Global.sCampaigns.Set(V.uGlobal.uCampaigns(V.Local.iC)!Campaign)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(V.Global.sCampaigns,"*!*",V.uGlobal.uCampaigns(V.Local.iC)!Campaign,V.Global.sCampaigns)
+	F.Intrinsic.Control.EndIf
+
+	'get the total lbs on the campaign
+'	F.Intrinsic.String.Concat("select sum (JOB_HEADER.qty_order * INVENTORY_MST2.lbs) as Total from JOB_HEADER join INVENTORY_MST2 on job_header.part = INVENTORY_MST2.part where sch_grp = '",V.uGlobal.uCampaigns(V.Local.iC)!Campaign,"'",V.Local.sQuery)
+'	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+'	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,False)
+'		V.uGlobal.uCampaigns(V.Local.iC)!TotalLbs.Set(V.ODBC.conX!rst.FieldValLong!Total)
+'	F.Intrinsic.Control.Else
+		V.uGlobal.uCampaigns(V.Local.iC)!TotalLbs.Set(0)
+'	F.Intrinsic.Control.EndIf
+'	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.String.Concat(V.Global.sCampaigns,"*!**New Campaign**!*",V.Global.sCampaigns)
+
+F.Intrinsic.Control.For(V.Local.iC,2,5,1)
+	Gui.F_Dispatch.gsfx_jobs.BuildStyle(V.Local.iC,11,"Type","DropDownList",V.Global.sCampaigns)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.CallSub(Populate_grid_campaign)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Campaigns_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Campaigns.End
+
+Program.Sub.Get_Job_Info.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Job_Info_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.iC.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	F.Intrinsic.String.Concat("select date_orig_due as OrigDueDate, date_due as DueDate, router, qty_order, sch_grp as Campaign from JOB_HEADER where job = '",V.uGlobal.uJobs(V.Local.iC)!Job,"' and suffix ='",V.uGlobal.uJobs(V.Local.iC)!Sfx,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.Local.sTemp.Set(V.ODBC.conX!rst.FieldValTrim!OrigDueDate)
+		F.Intrinsic.String.StripCharacters(V.Local.sTemp,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",6,V.Local.sTemp)
+		F.Intrinsic.String.LimitSplit(V.Local.sTemp,2,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp(0),"/",V.Local.sTemp(1),"/",V.Local.sTemp(2),V.Local.sTemp)
+		V.uGlobal.uJobs(V.Local.iC)!OrigDueDate.Set(V.Local.sTemp)
+
+		V.Local.sTemp.Set(V.ODBC.conX!rst.FieldValTrim!DueDate)
+		F.Intrinsic.String.StripCharacters(V.Local.sTemp,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",6,V.Local.sTemp)
+		F.Intrinsic.String.LimitSplit(V.Local.sTemp,2,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp(0),"/",V.Local.sTemp(1),"/",V.Local.sTemp(2),V.Local.sTemp)
+		V.uGlobal.uJobs(V.Local.iC)!DueDate.Set(V.Local.sTemp)
+
+		V.uGlobal.uJobs(V.Local.iC)!Campaign.Set(V.ODBC.conX!rst.FieldValTrim!Campaign)
+		V.uGlobal.uJobs(V.Local.iC)!OrigCampaign.Set(V.ODBC.conX!rst.FieldValTrim!Campaign)
+		V.uGlobal.uJobs(V.Local.iC)!Router.Set(V.ODBC.conX!rst.FieldValTrim!Router)
+		V.uGlobal.uJobs(V.Local.iC)!Qty.Set(V.ODBC.conX!rst.FieldValFloat!Qty_Order)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+	F.Intrinsic.String.Concat("select UM from JOB_OPERATIONS where job = '",V.uGlobal.uJobs(V.Local.iC)!Job,"' and suffix = '",V.uGlobal.uJobs(V.Local.iC)!Sfx,"' and seq = '",V.uGlobal.uJobs(V.Local.iC)!Seq,"' and UM <> ''",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		'F.Intrinsic.UI.Msgbox(V.ODBC.conX!rst.FieldValTrim!UM)
+		V.uGlobal.uJobs(V.Local.iC)!UOM.Set(V.ODBC.conX!rst.FieldValTrim!UM)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+	F.Intrinsic.String.Concat("select date_orig_due as OrigDueDate, date_due as DueDate, router, qty_order, sch_grp as Campaign from JOB_HEADER where job = '",V.uGlobal.uSorted(V.Local.iC)!Job,"' and suffix ='",V.uGlobal.uSorted(V.Local.iC)!Sfx,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.Local.sTemp.Set(V.ODBC.conX!rst.FieldValTrim!OrigDueDate)
+		F.Intrinsic.String.StripCharacters(V.Local.sTemp,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",6,V.Local.sTemp)
+		F.Intrinsic.String.LimitSplit(V.Local.sTemp,2,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp(0),"/",V.Local.sTemp(1),"/",V.Local.sTemp(2),V.Local.sTemp)
+		V.uGlobal.uSorted(V.Local.iC)!OrigDueDate.Set(V.Local.sTemp)
+
+		V.Local.sTemp.Set(V.ODBC.conX!rst.FieldValTrim!DueDate)
+		F.Intrinsic.String.StripCharacters(V.Local.sTemp,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",6,V.Local.sTemp)
+		F.Intrinsic.String.LimitSplit(V.Local.sTemp,2,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp(0),"/",V.Local.sTemp(1),"/",V.Local.sTemp(2),V.Local.sTemp)
+		V.uGlobal.uSorted(V.Local.iC)!DueDate.Set(V.Local.sTemp)
+
+		V.uGlobal.uSorted(V.Local.iC)!Campaign.Set(V.ODBC.conX!rst.FieldValTrim!Campaign)
+		V.uGlobal.uSorted(V.Local.iC)!OrigCampaign.Set(V.ODBC.conX!rst.FieldValTrim!Campaign)
+		V.uGlobal.uSorted(V.Local.iC)!Router.Set(V.ODBC.conX!rst.FieldValTrim!Router)
+		V.uGlobal.uSorted(V.Local.iC)!Qty.Set(V.ODBC.conX!rst.FieldValFloat!Qty_Order)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+	F.Intrinsic.String.Concat("select UM from JOB_OPERATIONS where job = '",V.uGlobal.uSorted(V.Local.iC)!Job,"' and suffix = '",V.uGlobal.uSorted(V.Local.iC)!Sfx,"' and seq = '",V.uGlobal.uSorted(V.Local.iC)!Seq,"' and UM <> ''",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		'F.Intrinsic.UI.Msgbox(V.ODBC.conX!rst.FieldValTrim!UM)
+		V.uGlobal.uSorted(V.Local.iC)!UOM.Set(V.ODBC.conX!rst.FieldValTrim!UM)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Job_Info_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Job_Info.End
+
+Program.Sub.Get_Part_Info.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Part_Info_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.iLbspWO.Declare(Float)
+V.Local.iC.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	V.Local.sPart.Set(V.uGlobal.uJobs(V.Local.iC)!Part)
+	F.Intrinsic.String.Concat("select lbs, description_2 as Structure, description_3 as MasterSpec from INVENTORY_MST2 where part = '",V.Local.sPart,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.Local.iLbspWO.Set(V.ODBC.conX!rst.FieldValFloat!Lbs)
+		F.Intrinsic.Math.Mult(V.Local.iLbspWO,V.uGlobal.uJobs(V.Local.iC)!Qty,V.uGlobal.uJobs(V.Local.iC)!Lbs)
+		V.uGlobal.uJobs(V.Local.iC)!Structure.Set(V.ODBC.conX!rst.FieldValTrim!Structure)
+		V.uGlobal.uJobs(V.Local.iC)!MasterSpec.Set(V.ODBC.conX!rst.FieldValTrim!MasterSpec)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+	F.Intrinsic.String.Concat("select code_sort as Category, sec_dim as FlatWidth, um_inventory as UM  from INVENTORY_MSTR where part='",V.Local.sPart,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.uGlobal.uJobs(V.Local.iC)!Category.Set(V.ODBC.conX!rst.FieldValTrim!Category)
+		V.uGlobal.uJobs(V.Local.iC)!FlatWidth.Set(V.ODBC.conX!rst.FieldValTrim!FlatWidth)
+		V.uGlobal.uJobs(V.Local.iC)!UoM.Set(V.ODBC.conX!rst.FieldValTrim!UM)
+	F.Intrinsic.Control.Else
+		V.uGlobal.uJobs(V.Local.iC)!FlatWidth.Set(0)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+	V.Local.sPart.Set(V.uGlobal.uSorted(V.Local.iC)!Part)
+	F.Intrinsic.String.Concat("select lbs, description_2 as Structure, description_3 as MasterSpec from INVENTORY_MST2 where part = '",V.Local.sPart,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.Local.iLbspWO.Set(V.ODBC.conX!rst.FieldValFloat!Lbs)
+		F.Intrinsic.Math.Mult(V.Local.iLbspWO,V.uGlobal.uSorted(V.Local.iC)!Qty,V.uGlobal.uSorted(V.Local.iC)!Lbs)
+		V.uGlobal.uSorted(V.Local.iC)!Structure.Set(V.ODBC.conX!rst.FieldValTrim!Structure)
+		V.uGlobal.uSorted(V.Local.iC)!MasterSpec.Set(V.ODBC.conX!rst.FieldValTrim!MasterSpec)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+	F.Intrinsic.String.Concat("select code_sort as Category, sec_dim as FlatWidth, um_inventory as UM  from INVENTORY_MSTR where part='",V.Local.sPart,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.uGlobal.uSorted(V.Local.iC)!Category.Set(V.ODBC.conX!rst.FieldValTrim!Category)
+		V.uGlobal.uSorted(V.Local.iC)!FlatWidth.Set(V.ODBC.conX!rst.FieldValTrim!FlatWidth)
+		V.uGlobal.uSorted(V.Local.iC)!UoM.Set(V.ODBC.conX!rst.FieldValTrim!UM)
+	F.Intrinsic.Control.Else
+		V.uGlobal.uSorted(V.Local.iC)!FlatWidth.Set(0)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Part_Info_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Part_Info.End
+
+program.sub.gsfx_jobs_comboexit.start
+'If the user enters a value which does not match any existing campaign/scheduling groups, a new scheduling group will be created
+
+F.Intrinsic.Control.SetErrorHandler("gsfx_jobs_comboexit_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sText.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.sSfx.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iRet.Declare(Long)
+V.Local.bRunning.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+Gui.F_Dispatch..Enabled(false)
+
+'get the campaign
+Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(11,V.args.Key,V.Local.sText)
+
+'get the job and suffix as these will need to be matched
+Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Args.Key,V.Local.sJob)
+Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(19,V.Args.Key,V.Local.sSfx)
+
+F.Intrinsic.Control.If(V.Local.sText,<>,"*New Campaign*")
+
+Gui.F_Dispatch.gsfx_jobs.Visible(False)
+
+	'if changing to an existing value, we need to update the lbs on the campaign
+	F.Intrinsic.Control.CallSub(Load_grid_udt)
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGrid!Job,V.Local.sJob,V.uGlobal.uGrid!Sfx,V.Local.sSfx,V.Local.sReturn)
+	F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+		F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+			F.Intrinsic.Math.Add(V.Local.sReturn(V.Local.iC),1,V.Local.iRet)
+			Gui.F_Dispatch.gsfx_jobs.TextMatrix(11,V.Local.iRet,V.Local.sText)
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.CallSub(Get_campaigns)
+	'F.Intrinsic.Control.CallSub(Populate_grid_campaign)
+
+F.Intrinsic.Control.Else
+
+	F.Intrinsic.Task.IsProgramRunning("wruncbl.exe",V.Local.bRunning)
+	F.Intrinsic.Control.If(V.Local.bRunning,=,False)
+		'if it's a new value, then create a new scheduling group
+		F.Global.General.CallWrapperSync(50,"JB9012")
+		'F.Intrinsic.Task.LaunchGSSSync("JB9012","-c","")
+
+		F.Intrinsic.Task.IsProgramRunning("wruncbl.exe",V.Local.bRunning)
+		F.Intrinsic.Control.DoUntil(V.Local.bRunning,=,False)
+			F.Intrinsic.Task.IsProgramRunning("wruncbl.exe",V.Local.bRunning)
+		F.Intrinsic.Control.Loop
+
+
+Gui.F_Dispatch.gsfx_jobs.Visible(False)
+
+		F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uGrid!Job,V.Local.sJob,V.uGlobal.uGrid!Sfx,V.Local.sSfx,V.Local.sReturn)
+		F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+			F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+			F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+				F.Intrinsic.Math.Add(V.Local.sReturn(V.Local.iC),1,V.Local.iRet)
+				Gui.F_Dispatch.gsfx_jobs.TextMatrix(11,V.Local.iRet,"")
+				Gui.F_Dispatch.gsfx_jobs.TextMatrix(10,V.Local.iRet,"")
+			F.Intrinsic.Control.Next(V.Local.iC)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.CallSub(Get_campaigns)
+		'if changing to an existing value, we need to update the lbs on the campaign
+		'F.Intrinsic.Control.CallSub(Populate_grid_campaign)
+		
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+Gui.F_Dispatch.gsfx_jobs.Visible(True)
+Gui.F_Dispatch..Enabled(true)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsfx_jobs_comboexit_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.gsfx_jobs_comboexit.end
+
+program.sub.gsfx_jobs_commandclick.start
+F.Intrinsic.Control.SetErrorHandler("gsfx_jobs_commandclick_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sJob.Declare(String)
+V.Local.sJob2.Declare(String)
+V.Local.sPrevJob.Declare(String)
+V.Local.sNextJob.Declare(String)
+V.Local.sjobRet.Declare(String)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iFirstRow.Declare(Long)
+V.Local.iLastRow.Declare(Long)
+V.Local.iCol.Declare(Long)
+V.Local.iA.Declare(Long)
+V.Local.iB.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iD.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+Gui.F_Dispatch.gsfx_jobs.Enabled(false)
+Gui.F_Dispatch.gsfx_jobs.Visible(false)
+F.Intrinsic.UI.InvokeWaitDialog("Please wait while row is moved.","Moving Rows")
+
+V.Global.bDirty.Set(True)
+V.Local.iRow.Set(V.Args.Key)
+V.Local.iCol.Set(V.Args.Column)
+V.Local.iRows.Set(V.Screen.F_Dispatch!gsfx_jobs.Rows)
+F.Intrinsic.Math.Sub(V.Local.iRows,1,V.Local.iRows)
+
+'essentailly saying move job rather than move row
+Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Args.Key,V.Local.sJob)
+
+'get the number of times the job occurs in the grid
+F.Intrinsic.Control.CallSub(Load_grid_udt)
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Job,V.Local.sJob,0,V.Local.sjobRet)
+
+F.Intrinsic.Control.SelectCase(V.Local.iCol)
+'Move up 1 job block
+F.Intrinsic.Control.Case(1)
+	F.Intrinsic.Control.If(V.Local.sjobRet,<>,"")
+		F.Intrinsic.String.Split(V.Local.sjobRet,"*!*",V.Local.sjobRet)
+
+		V.Local.iLastRow.Set(V.Local.sjobRet(V.Local.sjobRet.UBound))
+		F.Intrinsic.Math.Add(V.Local.iLastRow,1,V.Local.iLastRow)
+
+		F.Intrinsic.Control.DoUntil(V.Local.sPrevJob,<>,V.Local.sNextJob)
+			V.Local.sPrevJob.Set("")
+			V.Local.sNextJob.Set("")
+			V.Local.iB.Set(1)
+			'keep looking for jobs in the grid until the correct number of sequences have been moved
+			F.Intrinsic.Control.DoUntil(V.Local.iB,>,V.Local.iLastRow)
+				'get the next job, if there's a match that row should be moved
+				Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Local.iB,V.Local.sJob2)
+				F.Intrinsic.Control.If(V.Local.sJob,=,V.Local.sJob2)
+					F.Intrinsic.Control.If(V.Local.sPrevJob,=,"")
+						'the first time a match is encountered, get the previous row's job
+						F.Intrinsic.Math.Sub(V.Local.iB,2,V.Local.iC)
+						F.Intrinsic.Control.If(V.Local.iC,>,0)
+							Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Local.iC,V.Local.sPrevJob)
+						F.Intrinsic.Control.Else
+							V.Local.sPrevJob.Set("NULL")
+						F.Intrinsic.Control.EndIf
+					F.Intrinsic.Control.EndIf
+					F.Intrinsic.Control.CallSub(Up,"iRow",V.Local.iB,"iRows",V.Local.iRows)
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.Math.Add(V.Local.iB,1,V.Local.iB)
+			F.Intrinsic.Control.Loop
+			Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Local.iLastRow,V.Local.sNextJob)
+			F.Intrinsic.Math.Sub(V.Local.iLastRow,1,V.Local.iLastRow)
+		F.Intrinsic.Control.Loop
+	F.Intrinsic.Control.EndIf
+
+'Move to top
+F.Intrinsic.Control.Case(2)
+	F.Intrinsic.Control.If(V.Local.sjobRet,<>,"")
+		F.Intrinsic.String.Split(V.Local.sjobRet,"*!*",V.Local.sjobRet)
+		V.Local.iC.Set(0)
+		V.Local.iB.Set(1)
+		'keep looking for jobs in the grid until the correct number of sequences have been moved
+		F.Intrinsic.Control.DoUntil(V.Local.iC,>,V.Local.sjobRet.UBound)
+			Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Local.iB,V.Local.sJob2)
+			F.Intrinsic.Control.If(V.Local.sJob,=,V.Local.sJob2)
+				F.Intrinsic.Control.CallSub(Top,"iRow",V.Local.iB,"iRows",V.Local.iRows)
+				F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Math.Add(V.Local.iB,1,V.Local.iB)
+		F.Intrinsic.Control.Loop
+	F.Intrinsic.Control.EndIf
+
+'Move down 1 job block
+F.Intrinsic.Control.Case(3)
+	F.Intrinsic.Control.If(V.Local.sjobRet,<>,"")
+		F.Intrinsic.String.Split(V.Local.sjobRet,"*!*",V.Local.sjobRet)
+		V.Local.iFirstRow.Set(V.Local.sjobRet(0))
+		F.Intrinsic.Math.Add(V.Local.iFirstRow,1,V.Local.iFirstRow)
+		V.Local.iLastRow.Set(V.Local.sjobRet(V.Local.sJobRet.UBound))
+		F.Intrinsic.Math.Add(V.Local.iLastRow,1,V.Local.iLastRow)
+		F.Intrinsic.Math.Add(V.Local.iLastRow,1,V.Local.iC)
+
+		F.Intrinsic.Control.If(V.Local.iLastRow,<,V.Local.iRows)
+
+			Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Local.iC,V.Local.sJob2)
+			F.Intrinsic.Variable.UDTSeek(V.uGlobal.uGrid!Job,V.Local.sJob2,0,V.Local.sjobRet)
+			F.Intrinsic.Control.If(V.Local.sjobRet,<>,"")
+				F.Intrinsic.String.Split(V.Local.sjobRet,"*!*",V.Local.sjobRet)
+				'iC is now the number of times that this block needs to be moved down
+				V.Local.iC.Set(V.Local.sjobRet.UBound)
+				'F.Intrinsic.Math.Add(V.Local.sjobRet.UBound,1,V.Local.iC)
+			F.Intrinsic.Control.EndIf
+
+			V.Local.iB.Set(V.Local.iLastRow)
+			V.Local.iD.Set(V.Local.iLastRow)
+			F.Intrinsic.Control.For(V.Local.iA,0,V.Local.iC,1)
+				'keep looking for jobs in the grid until the correct number of sequences have been moved
+				F.Intrinsic.Control.DoUntil(V.Local.iB,<,V.Local.iFirstRow)
+					'F.Intrinsic.Control.If(V.Local.iB,<,V.Local.iRows)
+						'get the next job, if there's a match that row should be moved
+						Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(5,V.Local.iB,V.Local.sJob2)
+						F.Intrinsic.Control.If(V.Local.sJob,=,V.Local.sJob2)
+							F.Intrinsic.Control.CallSub(Down,"iRow",V.Local.iB,"iRows",V.Local.iRows)
+						F.Intrinsic.Control.EndIf
+					'F.Intrinsic.Control.EndIf
+					F.Intrinsic.Math.Sub(V.Local.iB,1,V.Local.iB)
+				F.Intrinsic.Control.Loop
+				F.Intrinsic.Math.Add(V.Local.iD,1,V.Local.iD)
+				V.Local.iB.Set(V.Local.iD)
+				F.Intrinsic.Math.Add(V.Local.iFirstRow,1,V.Local.iFirstRow)
+			F.Intrinsic.Control.Next(V.Local.iA)
+
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndSelect
+
+F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_auto_number.Value,=,0)
+	V.Local.iC.Set(1)
+	'autonumber the sorted list
+	F.Intrinsic.Control.For(V.Local.irow,1,V.Local.irows,1)
+		'read the style of the row, if it's sorted, leave the number, otherwise blank it out
+		Gui.F_Dispatch.gsfx_jobs.ReadRow(V.Local.iRow,V.Local.sRow)
+		F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+		F.Intrinsic.Control.If(V.Local.sRow(24).Long,>,3)
+			Gui.F_Dispatch.gsfx_jobs.TextMatrix(0,V.Local.iRow,V.Local.iC)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.Control.ExitFor(V.Local.iRow)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Math.Add(V.Local.iC,1,V.Local.iC)
+	F.Intrinsic.Control.Next(V.Local.iRow)
+F.Intrinsic.Control.ElseIf(V.Screen.F_Dispatch!chk_auto_number.Value,=,1)
+	'autonumber and then unautonumber rows
+	F.Intrinsic.Control.CallSub(Chk_auto_number_click,"bOrdered",False)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.CallSub(Get_campaigns)
+
+F.Intrinsic.UI.CloseWaitDialog
+Gui.F_Dispatch.gsfx_jobs.Enabled(true)
+Gui.F_Dispatch.gsfx_jobs.Visible(true)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsfx_jobs_commandclick_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+program.sub.gsfx_jobs_commandclick.end
+
+Program.Sub.Create_Lock.Start
+F.Intrinsic.Control.SetErrorHandler("Create_Lock_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.iLock.Declare(Long)
+V.Local.sTime.Declare(String)
+V.Local.bLocked.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.String.Concat("SELECT * FROM X_LOCK_FILE WHERE COMPANY = '",V.Caller.CompanyCode,"' AND LOCK_TYPE = 'DL' AND REC_KEY = '",V.Global.sWC,"'",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenLocalRecordsetRW("rst",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+'lock exists, we can't edit this record	
+	V.Local.bLocked.Set(True)
+F.Intrinsic.Control.Else
+'we can create a new lock
+	F.ODBC.conX!rst.AddNew
+	F.ODBC.conX!rst.Set!Company(V.Caller.CompanyCode)
+	F.ODBC.conX!rst.Set!Lock_Type("DL")
+	F.ODBC.conX!rst.Set!REC_KEY(V.Global.sWC)
+	F.ODBC.conX!rst.Set!User_ID(V.Caller.User)
+	F.ODBC.conX!rst.Set!WIN_USER_ID(V.System.UserName)
+	F.ODBC.conX!rst.Set!F_Date(V.Ambient.Now)
+	F.Intrinsic.String.Split(V.Ambient.Now," ",V.Local.sTime)
+	F.Intrinsic.String.Replace(V.Local.sTime(1),":","",V.Local.sTime)
+	F.ODBC.conX!rst.Set!Lock_Time(V.Local.sTime)
+	F.ODBC.conX!rst.Set!COMP_NAME(V.System.ComputerName)
+	F.ODBC.conX!rst.Set!PGM("")
+	F.ODBC.conX!rst.Set!File_Handle(0)
+	F.ODBC.conX!rst.Set!REF("ATG_APS_DISPATCH_LIST_ORDER_V1.gas")
+	F.ODBC.conX!rst.Set!REF_ID(0)
+	F.ODBC.conX!rst.Set!PID(V.Ambient.PID)
+	F.ODBC.conX!rst.Set!TRMNL(V.Caller.Terminal)
+	F.ODBC.conX!rst.Update
+	V.Local.bLocked.Set(False)
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rst.Close
+
+F.Intrinsic.Variable.AddRV("bLock",V.Local.bLocked)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Create_Lock_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Create_Lock.End
+
+Program.Sub.Delete_Lock.Start
+F.Intrinsic.Control.SetErrorHandler("Delete_Lock_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.String.Concat("DELETE FROM X_LOCK_FILE WHERE COMPANY = '",V.Caller.CompanyCode,"' AND LOCK_TYPE = 'DL' AND REC_KEY = '",V.Global.sWC,"'",V.Local.sQuery)
+F.ODBC.Connection!conX.Execute(V.Local.sQuery)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Delete_Lock_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Delete_Lock.End
+
+program.sub.f_columns_unload.start
+F.Intrinsic.Control.SetErrorHandler("f_columns_unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.UI.Msgbox("Save setting changes?","Save",4,V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet,=,"6")
+	F.Intrinsic.Control.CallSub(Cmd_savesettings_click)
+F.Intrinsic.Control.Else
+	Gui.F_Columns..Visible(false)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("f_columns_unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.f_columns_unload.end
+
+program.sub.cmd_savesettings_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_savesettings_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.CallSub(Save_settings)
+F.Intrinsic.Control.CallSub(Get_settings)
+Gui.F_Dispatch.gsfx_jobs.SetColumnPercentages(V.Args.sPercents)
+Gui.F_Columns..Visible(False)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_savesettings_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmd_savesettings_click.end
+
+Program.Sub.Get_Settings.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Settings_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sFQN.Declare(String)
+V.Local.sSettings.Declare(String)
+V.Local.bExists.Declare(Boolean)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.String.Concat(V.Caller.TempDir,"\Moveable_Dispatch_List_Settings_",V.Caller.CompanyCode,"_",V.Caller.User,".txt",V.Local.sFQN)
+F.Intrinsic.File.Exists(V.Local.sFQN,V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.Intrinsic.File.File2String(V.Local.sFQN,V.Local.sSettings)
+F.Intrinsic.Control.Else
+	V.Local.sSettings.Set(".03:.02:.03:.02:.04:.04:.04:.04:.09:.04:.04:.05:.03:.03:.08:.08:.08:.04:.04:.06:.03:.03:.03:.06:.0:.0")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("sPercents",V.Local.sSettings)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Settings_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Settings.End
+
+Program.Sub.Save_Settings.Start
+F.Intrinsic.Control.SetErrorHandler("Save_Settings_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sFQN.Declare(String)
+V.Local.sSettings.Declare(String)
+V.Local.sRow.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+V.Local.iRows.Set(V.Screen.F_Columns!gsfx_Settings.Rows)
+F.Intrinsic.Math.Sub(V.Local.iRows,1,V.Local.iRows)
+
+F.Intrinsic.Control.For(V.Local.iRow,1,V.Local.iRows,1)
+	Gui.F_Columns.gsfx_Settings.ReadRow(V.Local.iRow,V.Local.sRow)
+	F.Intrinsic.String.Split(V.Local.sRow,"*!*",V.Local.sRow)
+	F.Intrinsic.Math.Div(V.Local.sRow(1).Float,100,V.Local.sRow(1))
+	F.Intrinsic.Control.If(V.Local.sSettings,=,"")
+		V.Local.sSettings.Set(V.Local.sRow(1))
+		'F.Intrinsic.String.Concat(".",V.Local.sRow(1),V.Local.sSettings)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(V.Local.sSettings,":",V.Local.sRow(1),V.Local.sSettings)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iRow)
+
+'add the hidden style column
+F.Intrinsic.String.Concat(V.Local.sSettings,":0:0",V.Local.sSettings)
+
+F.Intrinsic.String.Concat(V.Caller.TempDir,"\Moveable_Dispatch_List_Settings_",V.Caller.CompanyCode,"_",V.Caller.User,".txt",V.Local.sFQN)
+F.Intrinsic.File.Exists(V.Local.sFQN,V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.Intrinsic.File.DeleteFile(V.Local.sFQN)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.File.String2File(V.Local.sFQN,V.Local.sSettings)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Save_Settings_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Save_Settings.End
+
+program.sub.chk_columns_click.start
+F.Intrinsic.Control.SetErrorHandler("chk_columns_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSettings.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iRow.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.Control.If(V.Screen.F_Dispatch!chk_columns.Value,=,0)
+	Gui.F_Dispatch.gsfx_jobs.SetColumnPercentages(".03:.02:.03:.02:.04:.04:.04:.04:.09:.04:.04:.05:.03:.03:.08:.08:.08:.04:.04:.06:.03:.03:.03:.06:.0:.0")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+Gui.F_Columns.gsfx_Settings.Cols(2)
+Gui.F_Columns.gsfx_Settings.Rows(25)
+
+'buildstyle
+Gui.F_Columns.gsfx_Settings.BuildStyle(1,0,"Format","Alignment",2)
+Gui.F_Columns.gsfx_Settings.BuildStyle(1,0,"Type","Locked",True)
+Gui.F_Columns.gsfx_Settings.BuildStyle(1,1,"Format","Alignment",6)
+Gui.F_Columns.gsfx_Settings.BuildStyle(1,1,"Format","Numeric",True)
+
+'column headers
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,0,"Column")
+Gui.F_Columns.gsfx_Settings.TextMatrix(1,0,"Width %")
+
+'row headers
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,1,"Order")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,2,"+")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,3,"Move to Top")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,4,"-")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,5,"Part")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,6,"Job")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,7,"Orig Due Date")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,8,"Due Date")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,9,"Description")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,10,"Lbs / WO")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,11,"Running Lbs Total")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,12,"Campaign")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,13,"Qty")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,14,"UoM")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,15,"Customer")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,16,"Master Spec")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,17,"Structure")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,18,"Flat Width")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,19,"Category")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,20,"Sched Start")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,21,"Suffix")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,22,"Seq")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,23,"Priority")
+Gui.F_Columns.gsfx_Settings.TextMatrix(0,24,"Sched End")
+
+F.Intrinsic.Control.CallSub(Get_settings)
+V.Local.sSettings.Set(V.Args.sPercents)
+F.Intrinsic.String.Split(V.Local.sSettings,":",V.Local.sSettings)
+
+F.Intrinsic.Control.For(V.Local.iRow,1,24,1)
+	F.Intrinsic.Math.Sub(V.Local.iRow,1,V.Local.iC)
+	F.Intrinsic.Math.Mult(V.Local.sSettings(V.Local.iC).Float,100,V.Local.sTemp)
+	Gui.F_Columns.gsfx_Settings.TextMatrix(1,V.Local.iRow,V.Local.sTemp)
+	Gui.F_Columns.gsfx_Settings.ApplyStyle(V.Local.iRow,1)
+F.Intrinsic.Control.Next(V.Local.iRow)
+
+Gui.F_Columns.gsfx_Settings.FixedRows(1)
+Gui.F_Columns.gsfx_Settings.FixedCols(1)
+Gui.F_Columns.gsfx_Settings.SetColumnPercentages(".75:.25")
+
+Gui.F_Columns..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("chk_columns_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.chk_columns_click.end
+
+program.sub.cmd_updatecampaign_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_updatecampaign_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sParam.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sDateTemp.Declare(String)
+V.Local.dtTemp.Declare(Date)
+V.Local.bSched.Declare(Boolean)
+V.Local.sSeq.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iRet.Declare(Long)
+V.Local.sMsg.Declare(String)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+F.Intrinsic.UI.InvokeWaitDialog("Now posting changes to job headers.","Posting Changes")
+
+F.Intrinsic.UI.Msgbox("Do you want to forward schedule changed jobs?","Schedule Jobs",4,V.Local.iRet)
+F.Intrinsic.Control.If(V.Local.iRet,=,6)
+	V.Local.bSched.Set(True)
+F.Intrinsic.Control.Else
+	V.Local.bSched.Set(False)
+F.Intrinsic.Control.EndIf
+
+'get the jobs from the grid
+F.Intrinsic.Math.Sub(V.Screen.F_Dispatch!gsfx_jobs.Rows,2,V.Local.iC)
+V.uGlobal.uTempGrid.Redim(0,V.Local.iC)
+'load grid data to UDT
+Gui.F_Dispatch.gsfx_jobs.ExportToUDT(V.uGlobal.uTempGrid,"0*!*4*!*5*!*6*!*7*!*8*!*9*!*11*!*12*!*13*!*14*!*15*!*16*!*17*!*18*!*19*!*20*!*21*!*22*!*23*!*24*!*25","Row*!*Part*!*Job*!*OrigDueDate*!*DueDate*!*Description*!*Lbs*!*Campaign*!*Qty*!*UoM*!*CustName*!*MasterSpec*!*Structure*!*FlatWidth*!*Category*!*SchedStart*!*Sfx*!*Seq*!*Priority*!*SchedEnd*!*FGStyle*!*OrigCampaign",1,-1,False)
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uTempGrid!SeqRes,V.Global.sWC)
+
+'post changes to campaign and due date back to the work order header
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uTempGrid.UBound,1)
+	'compare to the original untouched UDT
+	F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uOrig!Job,V.uGlobal.uTempGrid(V.Local.iC)!Job,V.uGlobal.uOrig!Sfx,V.uGlobal.uTempGrid(V.Local.iC)!Sfx,V.uGlobal.uOrig!Seq,V.uGlobal.uTempGrid(V.Local.iC)!Seq,V.Local.sReturn)
+	F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+		F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+		'if the campaign is changed, update the campaign
+		F.Intrinsic.Control.If(V.uGlobal.uOrig(V.Local.sReturn(0))!Campaign,<>,V.uGlobal.uTempGrid(V.Local.iC)!Campaign)
+			F.Intrinsic.String.Concat("Update JOB_HEADER set SCH_GRP = '",V.uGlobal.uTempGrid(V.Local.iC)!Campaign,"' WHERE JOB = '",V.uGlobal.uTempGrid(V.Local.iC)!Job,"' and SUFFIX = '",V.uGlobal.uTempGrid(V.Local.iC)!Sfx,"'",V.Local.sQuery)
+			F.ODBC.Connection!conX.Execute(V.Local.sQuery)
+		F.Intrinsic.Control.EndIf
+		'if the due date has been changed, update the due date
+		F.Intrinsic.Control.If(V.uGlobal.uOrig(V.Local.sReturn(0))!DueDate,<>,V.uGlobal.uTempGrid(V.Local.iC)!DueDate)
+			F.Intrinsic.String.Format(V.uGlobal.uTempGrid(V.Local.iC)!DueDate,"MMDDYY",V.uGlobal.uTempGrid(V.Local.iC)!DueDate)
+			F.Intrinsic.String.Concat("Setting job ",V.uGlobal.uTempGrid(v.Local.iC)!Job," to have a due date of ",V.uGlobal.uTempGrid(V.Local.iC)!DueDate,V.Local.sMsg)
+			F.Intrinsic.Debug.Print(V.Local.sMsg)
+				F.Intrinsic.String.Concat("Update JOB_HEADER set DATE_DUE = '",V.uGlobal.uTempGrid(V.Local.iC)!DueDate,"' WHERE JOB = '",V.uGlobal.uTempGrid(V.Local.iC)!Job,"' and SUFFIX = '",V.uGlobal.uTempGrid(V.Local.iC)!Sfx,"'",V.Local.sQuery)
+			F.ODBC.Connection!conX.Execute(V.Local.sQuery)
+
+			'forward schedule ALL jobs based on new WO due date
+			F.Intrinsic.Control.If(V.Local.bSched,=,True)
+				F.Intrinsic.String.LimitSplit(V.uGlobal.uTempGrid(V.Local.iC)!DueDate,2,V.Local.sDateTemp)
+				F.Intrinsic.String.Concat(V.Local.sDateTemp(0),"/",V.Local.sDateTemp(1),"/20",V.Local.sDateTemp(2),V.Local.sDateTemp)
+				F.Global.APS.ScheduleJob(V.uGlobal.uTempGrid(V.Local.iC)!Job,V.uGlobal.uTempGrid(V.Local.iC)!Sfx,"F",V.Local.sDateTemp)
+
+'				F.Intrinsic.String.Concat("Select schedstart, schedend from APSV3_JBMASTER WHERE JOB = '",V.uGlobal.uTempGrid(V.Local.iC)!Job,"' and SFX = '",V.uGlobal.uTempGrid(V.Local.iC)!Sfx,"'",V.Local.sQuery)
+'				F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst2",V.Local.sQuery)
+'				F.Intrinsic.Control.If(V.ODBC.conX!rst2.EOF,<>,True)
+'					F.Intrinsic.String.Format(V.ODBC.conX!rst2.FieldValTrim!SchedStart,"MM/DD/YY",V.uGlobal.uTempGrid(V.Local.iC)!SchedStart)
+'					F.Intrinsic.String.Format(V.ODBC.conX!rst2.FieldValTrim!SchedEnd,"MM/DD/YY",V.uGlobal.uTempGrid(V.Local.iC)!SchedEnd)
+'				F.Intrinsic.Control.EndIf
+'				F.ODBC.conX!rst2.Close
+			F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'F.Intrinsic.Variable.UDTCopy(V.uGlobal.uTempGrid,V.uGlobal.uGrid,False)
+'F.Intrinsic.Control.CallSub(Load_grid_from_udt)
+
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.ExitSub
+
+
+F.Intrinsic.Control.Label("cmd_updatecampaign_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmd_updatecampaign_click.end
+
+Program.Sub.Populate_Grid_Campaign.Start
+F.Intrinsic.Control.SetErrorHandler("Populate_Grid_Campaign_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sCampaign.Declare(String)
+V.Local.sOrigCampaign.Declare(String)
+V.Local.iLbs.Declare(Float)
+V.Local.iTemp.Declare(Float)
+V.Local.iRow.Declare(Long)
+V.Local.iRows.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iStyle.Declare(Long)
+
+V.Global.sCallingSub.Set(V.Ambient.CurrentSubroutine)
+
+V.Local.iRows.Set(V.Screen.F_Dispatch!gsfx_jobs.Rows)
+F.Intrinsic.Math.Sub(V.Local.iRows,1,V.Local.iRows)
+
+'sum all the lbs for the campaign
+'only add to the original those jobs whose campaign has been changed
+F.Intrinsic.Control.For(V.Local.iRow,1,V.Local.iRows,1)
+	Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(23,V.Local.iRow,V.Local.sOrigCampaign)
+	Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(11,V.Local.iRow,V.Local.sCampaign)
+	Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(9,V.Local.iRow,V.Local.iLbs)
+	F.Intrinsic.Control.If(V.Local.sCampaign,<>,"")
+		F.Intrinsic.Variable.UDTSeek(V.uGlobal.uCampaigns!Campaign,V.Local.sCampaign,0,V.Local.sReturn)
+		F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+			F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+			V.Local.iTemp.Set(V.uGlobal.uCampaigns(V.Local.sReturn(0))!TotalLbs.Float)
+			F.Intrinsic.Math.Add(V.Local.iTemp,V.Local.iLbs,V.Local.iTemp)
+			V.uGlobal.uCampaigns(V.Local.sReturn(0))!TotalLbs.Set(V.Local.iTemp)
+			'make this a running total instead of a flat total
+			Gui.F_Dispatch.gsfx_jobs.TextMatrix(10,V.Local.iRow,V.uGlobal.uCampaigns(V.Local.sReturn(0))!TotalLbs.long)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		Gui.F_Dispatch.gsfx_jobs.TextMatrix(10,V.Local.iRow,"")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iRow)
+
+'all jobs need to have their sum updated
+'enter the sum into the total lbs field per campaign
+'F.Intrinsic.Control.For(V.Local.iRow,1,V.Local.iRows,1)
+'	Gui.F_Dispatch.gsfx_jobs.GetTextMatrix(11,V.Local.iRow,V.Local.sCampaign)
+'	F.Intrinsic.Control.If(V.Local.sCampaign,<>,"")
+'		F.Intrinsic.Variable.UDTSeek(V.uGlobal.uCampaigns!Campaign,V.Local.sCampaign,0,V.Local.sReturn)
+'		F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+'			F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+'			Gui.F_Dispatch.gsfx_jobs.TextMatrix(10,V.Local.iRow,V.uGlobal.uCampaigns(V.Local.sReturn(0))!TotalLbs)
+'		F.Intrinsic.Control.EndIf
+'	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Next(V.Local.iRow)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Populate_Grid_Campaign_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Populate_Grid_Campaign.End
+
+Program.Sub.Get_Setup_Lines.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Setup_Lines_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sRet2.Declare(String)
+V.Local.iLbs.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iC2.Declare(Long)
+
+'find all the work orders that have set up in the router
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uJobs!Router,"SET",2,V.Local.sReturn)
+F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+	F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+	'if there are multiple lines that have set up
+	F.Intrinsic.Control.If(V.Local.sReturn.UBound,>,1)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+			'combine the whole work order for that setup into one line
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobs!Job,V.uGlobal.uJobs(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uJobs(V.Local.iC)!Sfx,V.Local.sRet2)
+			F.Intrinsic.Control.If(V.Local.sRet2,<>,"")
+				F.Intrinsic.String.Split(V.Local.sRet2,"*!*",V.Local.sRet2)
+				'add up all the lbs and save them to the first match
+				F.Intrinsic.Control.For(V.Local.iC2,1,V.Local.sRet2.UBound,1)
+					F.Intrinsic.Math.Add(V.uGlobal.uJobs(V.Local.sRet2(V.Local.iC2))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs)
+					F.Intrinsic.Variable.UDTFlagOrdinal(V.uGlobal.uJobs,True,V.Local.sRet2(V.Local.iC2))
+				F.Intrinsic.Control.Next(V.Local.iC2)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+'delete all the extra lines except for the first instance which now has all the lbs
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+'find all the work orders that have purge in the route
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uJobs!Router,"PUR",2,V.Local.sReturn)
+F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+	F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+	'if there are multiple lines that have purge
+	F.Intrinsic.Control.If(V.Local.sReturn.UBound,>,1)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+			'combine the whole work order for that purge into one line
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobs!Job,V.uGlobal.uJobs(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uJobs(V.Local.iC)!Sfx,V.Local.sRet2)
+			F.Intrinsic.Control.If(V.Local.sRet2,<>,"")
+				F.Intrinsic.String.Split(V.Local.sRet2,"*!*",V.Local.sRet2)
+				'add up all the lbs and save them to the first match
+				F.Intrinsic.Control.For(V.Local.iC2,1,V.Local.sRet2.UBound,1)
+					F.Intrinsic.Math.Add(V.uGlobal.uJobs(V.Local.sRet2(V.Local.iC2))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs)
+					F.Intrinsic.Variable.UDTFlagOrdinal(V.uGlobal.uJobs,True,V.Local.sRet2(V.Local.iC2))
+				F.Intrinsic.Control.Next(V.Local.iC2)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+'delete all the extra lines except for the first instance which now has all the lbs
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Setup_Lines_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Setup_Lines.End
+
+Program.Sub.Get_Router_Setup.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Router_Setup_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.iC.Declare(Long)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	F.Intrinsic.String.Concat("select set_up from ROUTER_LINE where um_inventory = 'LB' and router = '",V.uGlobal.uJobs(V.Local.iC)!Router,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+			F.Intrinsic.Math.Add(V.uGlobal.uJobs(V.Local.iC)!Lbs,V.ODBC.conX!rst.FieldValFloat!Set_Up,V.uGlobal.uJobs(V.Local.iC)!Lbs)
+			F.ODBC.conX!rst.MoveNext
+		F.Intrinsic.Control.Loop
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Lbs,>,1)
+		F.Intrinsic.Math.Round(V.uGlobal.uJobs(V.Local.iC)!Lbs,0,V.uGlobal.uJobs(V.Local.iC)!Lbs)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+	F.Intrinsic.String.Concat("select set_up from ROUTER_LINE where um_inventory = 'LB' and router = '",V.uGlobal.uSorted(V.Local.iC)!Router,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+			F.Intrinsic.Math.Add(V.uGlobal.uSorted(V.Local.iC)!Lbs,V.ODBC.conX!rst.FieldValFloat!Set_Up,V.uGlobal.uSorted(V.Local.iC)!Lbs)
+			F.ODBC.conX!rst.MoveNext
+		F.Intrinsic.Control.Loop
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!Lbs,>,1)
+		F.Intrinsic.Math.Round(V.uGlobal.uSorted(V.Local.iC)!Lbs,0,V.uGlobal.uSorted(V.Local.iC)!Lbs)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Router_Setup_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Router_Setup.End
+
+Program.Sub.Get_CustNo.Start
+F.Intrinsic.Control.SetErrorHandler("Get_CustNo_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sCustomer.Declare(String)
+
+V.Local.sCustomer.Set(V.Args.sCust)
+F.Intrinsic.String.Concat("select distinct custno from APSV3_JBMaster where custname = '",V.Local.sCustomer.Trim,"' and job = '",V.args.sJob.Trim,"'",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,False)
+	F.Intrinsic.Variable.AddRV("sCustNo",V.ODBC.conX!rst.FieldValTrim!CustNo)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Variable.AddRV("sCustNo","")
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rst.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_CustNo_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_CustNo.End
+
+
