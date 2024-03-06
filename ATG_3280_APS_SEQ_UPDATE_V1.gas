@@ -1,0 +1,69 @@
+Program.Sub.ScreenSU.Start
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Coded by: Melinda Keyes
+'Project Start Date: 10/15/2012
+'Hooks:
+'  Task Scheduler
+'Notes:
+'  This program will run from the Task Scheduler and remove sequences from the custom table (ATG_APSV3_JBSORT) that no longer exist or have been closed
+
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+'F.Intrinsic.Debug.InvokeDebugger
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sDeletions.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.bExists.Declare(Boolean)
+
+F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+F.ODBC.Connection!conX.TableExists("ATG_APSV3_JBSORT_V1",V.Local.bExists)
+
+'if the table exists, loop through all the records
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.ODBC.Connection!conX.OpenRecordsetRW("rst","ATG_APSV3_JBSORT_V1")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		F.Intrinsic.String.Concat("SELECT ComplDate FROM APSV3_JBLines WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst2",V.Local.sQuery)
+		'if the record exists and has a completion date listed, delete the record
+		F.Intrinsic.Control.If(V.ODBC.conX!rst2.EOF,<>,True)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst2.FieldValTrim!ComplDate,<>,"")
+				F.Intrinsic.String.Concat("*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			'if the record doesnt exist, delete it from the custom table
+			F.Intrinsic.String.Concat("*!*DELETE FROM ATG_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst2.Close
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.EndIf
+
+'delete all marked sequences
+F.Intrinsic.String.Split(V.Local.sDeletions,"*!*",V.Local.sDeletions)
+F.Intrinsic.Control.For(V.Local.iC,1,V.Local.sDeletions.UBound,1)
+	F.ODBC.Connection!conX.Execute(V.Local.sDeletions(V.Local.iC))
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.ODBC.Connection!conX.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_SEQ_UPDATE_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.Debug.SetLA(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+
