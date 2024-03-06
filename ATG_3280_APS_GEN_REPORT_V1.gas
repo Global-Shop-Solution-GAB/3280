@@ -1,0 +1,804 @@
+Program.Sub.ScreenSU.Start
+gui.F_Print_Dispatch..create
+gui.F_Print_Dispatch..caption("Print Dispatch List")
+gui.F_Print_Dispatch..size(3840,1815)
+gui.F_Print_Dispatch..position(0,0)
+gui.F_Print_Dispatch..event(unload,f_print_dispatch_unload)
+gui.F_Print_Dispatch..alwaysontop(False)
+gui.F_Print_Dispatch..fontname("Arial")
+gui.F_Print_Dispatch..fontsize(8)
+gui.F_Print_Dispatch..forecolor(0)
+gui.F_Print_Dispatch..fontstyle(,,,,)
+gui.F_Print_Dispatch..BackColor(-2147483633)
+gui.F_Print_Dispatch..controlbox(True)
+gui.F_Print_Dispatch..maxbutton(True)
+gui.F_Print_Dispatch..minbutton(True)
+gui.F_Print_Dispatch..mousepointer(0)
+gui.F_Print_Dispatch..moveable(True)
+gui.F_Print_Dispatch..sizeable(True)
+gui.F_Print_Dispatch..ShowInTaskBar(True)
+gui.F_Print_Dispatch..titlebar(True)
+gui.F_Print_Dispatch.dlist_wc.create(dropdownlist)
+gui.F_Print_Dispatch.dlist_wc.visible(True)
+gui.F_Print_Dispatch.dlist_wc.size(3405,330)
+gui.F_Print_Dispatch.dlist_wc.zorder(0)
+gui.F_Print_Dispatch.dlist_wc.position(100,400)
+gui.F_Print_Dispatch.dlist_wc.enabled(True)
+gui.F_Print_Dispatch.dlist_wc.fontname("Arial")
+gui.F_Print_Dispatch.dlist_wc.fontsize(8)
+gui.F_Print_Dispatch.lbl_wc.create(label,"Workcenter/Workgroup",True,1935,255,1,100,200,True,0,Arial,8,-2147483633,0)
+gui.F_Print_Dispatch.cmd_print.create(button)
+gui.F_Print_Dispatch.cmd_print.caption("Print Dispatch List")
+gui.F_Print_Dispatch.cmd_print.visible(True)
+gui.F_Print_Dispatch.cmd_print.size(1945,375)
+gui.F_Print_Dispatch.cmd_print.zorder(0)
+gui.F_Print_Dispatch.cmd_print.position(100,800)
+gui.F_Print_Dispatch.cmd_print.enabled(True)
+gui.F_Print_Dispatch.cmd_print.fontname("Arial")
+gui.F_Print_Dispatch.cmd_print.fontsize(8)
+gui.F_Print_Dispatch.cmd_print.event(click,cmd_print_click)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+	V.UDT.Jobs.Define("SeqRes",String,"SeqRes")
+	V.UDT.Jobs.Define("Row",Long,"")
+	V.UDT.Jobs.Define("Part",String,"Part")
+	V.UDT.Jobs.Define("Job",String,"Job")
+	V.UDT.Jobs.Define("OrigDueDate",String,"")
+	V.UDT.Jobs.Define("DueDate",String,"")
+	V.UDT.Jobs.Define("Description",String,"Description")
+	V.UDT.Jobs.Define("Lbs",Float,"")
+	V.UDT.Jobs.Define("Qty",Long,"")
+	V.UDT.Jobs.Define("Campaign",String,"")
+	V.UDT.Jobs.Define("CustName",String,"CustName")
+	V.UDT.Jobs.Define("CustNo",String,"CustNo")
+	V.UDT.Jobs.Define("MasterSpec",String,"")
+	V.UDT.Jobs.Define("Structure",String,"")
+	V.UDT.Jobs.Define("FlatWidth",String,"")
+	V.UDT.Jobs.Define("Category",String,"")
+	V.UDT.Jobs.Define("SchedStart",String,"SchedStart")
+	V.UDT.Jobs.Define("Sfx",String,"Sfx")
+	V.UDT.Jobs.Define("Seq",String,"Seq")
+	V.UDT.Jobs.Define("Priority",String,"Priority")
+	V.UDT.Jobs.Define("SchedEnd",String,"SchedEnd")
+	V.UDT.Jobs.Define("Comp",Boolean,"")
+	V.UDT.Jobs.Define("Sorted",Boolean,"")
+	V.UDT.Jobs.Define("TempStyle",Long,"")
+	V.UDT.Jobs.Define("FGStyle",Long,"")
+	V.UDT.Jobs.Define("Router",String,"")
+	V.UDT.Jobs.Define("OrigCampaign",String,"")
+	V.UDT.Jobs.Define("UoM",String)
+	V.uGlobal.uJobs.Declare("Jobs")
+	
+	V.UDT.Jobs2.Define("SeqRes",String,"SeqRes")
+	V.UDT.Jobs2.Define("Row",Long,"Row")
+	V.UDT.Jobs2.Define("Part",String,"Part")
+	V.UDT.Jobs2.Define("Job",String,"Job")
+	V.UDT.Jobs2.Define("OrigDueDate",String,"OrigDueDate")
+	V.UDT.Jobs2.Define("DueDate",String,"DueDate")
+	V.UDT.Jobs2.Define("Description",String,"Description")
+	V.UDT.Jobs2.Define("Lbs",Float,"Lbs")
+	V.UDT.Jobs2.Define("Qty",Long,"")
+	V.UDT.Jobs2.Define("Campaign",String,"Campaign")
+	V.UDT.Jobs2.Define("CustName",String,"CustName")
+	V.UDT.Jobs2.Define("CustNo",String,"CustNo")
+	V.UDT.Jobs2.Define("MasterSpec",String,"MasterSpec")
+	V.UDT.Jobs2.Define("Structure",String,"Structure")
+	V.UDT.Jobs2.Define("FlatWidth",String,"")
+	V.UDT.Jobs2.Define("Category",String,"Category")
+	V.UDT.Jobs2.Define("SchedStart",String,"SchedStart")
+	V.UDT.Jobs2.Define("Sfx",String,"Sfx")
+	V.UDT.Jobs2.Define("Seq",String,"Seq")
+	V.UDT.Jobs2.Define("Priority",String,"Priority")
+	V.UDT.Jobs2.Define("SchedEnd",String,"SchedEnd")
+	V.UDT.Jobs2.Define("Comp",Boolean,"")
+	V.UDT.Jobs2.Define("Sorted",Boolean,"")
+	V.UDT.Jobs2.Define("TempStyle",Long,"")
+	V.UDT.Jobs2.Define("FGStyle",Long,"")
+	V.UDT.Jobs2.Define("Router",String,"")
+	V.UDT.Jobs2.Define("OrigCampaign",String,"")
+	V.UDT.Jobs2.Define("UoM",String)
+	V.uGlobal.uSorted.Declare("Jobs2")
+	V.uGlobal.uGrid.Declare("Jobs2")
+	V.uGlobal.uTempGrid.Declare("Jobs2")
+Program.Sub.Preflight.End
+
+program.sub.cmd_print_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_print_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sWC.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iRow.Declare(Long)
+V.Local.sParam.Declare(String)
+V.Local.sParamVal.Declare(String)
+V.Local.sSeq.Declare(String)
+V.Local.iReport.Declare(Long)
+V.Local.sReportName.Declare(String)
+
+V.Local.sWC.Set(V.Screen.F_Print_Dispatch!dlist_WC.Text)
+F.Intrinsic.Control.If(V.Local.sWC,=,"")
+	F.Intrinsic.UI.Msgbox("Please select a workcenter or workgroup before continuing.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.Else
+	V.Global.sWC.Set(V.Local.sWC)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.InvokeWaitDialog("Please wait while report is generated.","Generating Report")
+
+F.Intrinsic.Control.CallSub(Load_udt)
+
+F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uJobs!Job,"")
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+F.ODBC.Connection!conX.Execute("DELETE FROM BI_3280_APSV3_JBSORT_V1")
+
+F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,=,-1)
+	F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+		F.ODBC.Connection!conX.GetID("BI_APSV3_JBSORT_V1","Row",True,V.Local.iRow)
+		F.Intrinsic.Control.If(V.Local.iRow,=,0)
+			V.Local.iRow.Set(1)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.String.Concat("SELECT * FROM BI_3280_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Global.sWC,"' AND Job = '",V.uGlobal.uJobs(V.Local.iC)!Job,"' AND Sfx = '",V.uGlobal.uJobs(V.Local.iC)!Sfx,"' AND Seq = '",V.uGlobal.uJobs(V.Local.iC)!Seq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenRecordsetRW("rst",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,True)
+			F.ODBC.conX!rst.AddNew
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!SeqRes(V.uGlobal.uJobs(V.Local.iC)!SeqRes)
+		F.ODBC.conX!rst.Set!Row(V.Local.iRow)
+		F.ODBC.conX!rst.Set!Part(V.uGlobal.uJobs(V.Local.iC)!Part)
+		F.ODBC.conX!rst.Set!Job(V.uGlobal.uJobs(V.Local.iC)!Job)
+		F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!OrigDueDate,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!OrigDueDate,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!OrigDueDate(V.uGlobal.uJobs(V.Local.iC)!OrigDueDate)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!OrigDueDate("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!DueDate,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!DueDate,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!DueDate(V.uGlobal.uJobs(V.Local.iC)!DueDate)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!DueDate("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!Description(V.uGlobal.uJobs(V.Local.iC)!Description)
+		F.ODBC.conX!rst.Set!Lbs(V.uGlobal.uJobs(V.Local.iC)!Lbs)
+		F.ODBC.conX!rst.Set!Campaign(V.uGlobal.uJobs(V.Local.iC)!Campaign)
+		F.ODBC.conX!rst.Set!CustName(V.uGlobal.uJobs(V.Local.iC)!CustName)
+		F.ODBC.conX!rst.Set!CustNo(V.uGlobal.uJobs(V.Local.iC)!CustNo)
+		F.ODBC.conX!rst.Set!MasterSpec(V.uGlobal.uJobs(V.Local.iC)!MasterSpec)
+		F.ODBC.conX!rst.Set!Structure(V.uGlobal.uJobs(V.Local.iC)!Structure)
+		F.ODBC.conX!rst.Set!Category(V.uGlobal.uJobs(V.Local.iC)!Category)
+		F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedStart,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedStart,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!SchedStart(V.uGlobal.uJobs(V.Local.iC)!SchedStart)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!SchedStart("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!Sfx(V.uGlobal.uJobs(V.Local.iC)!Sfx)
+		F.Intrinsic.String.LPad(V.uGlobal.uJobs(V.Local.iC)!Seq,"0",6,V.Local.sSeq)
+		F.ODBC.conX!rst.Set!Seq(V.Local.sSeq)
+		F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Priority.IsNumeric,=,True)
+			F.ODBC.conX!rst.Set!Priority(V.uGlobal.uJobs(V.Local.iC)!Priority)
+		F.Intrinsic.Control.Else
+			F.ODBC.conX!rst.Set!Priority(0)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedEnd,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedEnd,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!SchedEnd(V.uGlobal.uJobs(V.Local.iC)!SchedEnd)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!SchedEnd("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Comp,<>,"")
+			F.ODBC.conX!rst.Set!Comp(V.uGlobal.uJobs(V.Local.iC)!Comp)
+		F.Intrinsic.Control.Else
+			F.ODBC.conX!rst.Set!Comp(False)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Update
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+		F.Intrinsic.String.Concat("SELECT * FROM BI_3280_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Global.sWC,"' AND Job = '",V.uGlobal.uSorted(V.Local.iC)!Job,"' AND Sfx = '",V.uGlobal.uSorted(V.Local.iC)!Sfx,"' AND Seq = '",V.uGlobal.uSorted(V.Local.iC)!Seq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenRecordsetRW("rst",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,True)
+			F.ODBC.conX!rst.AddNew
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!SeqRes(V.uGlobal.uSorted(V.Local.iC)!SeqRes)
+		F.ODBC.conX!rst.Set!Row(V.uGlobal.uSorted(V.Local.iC)!Row)
+		F.ODBC.conX!rst.Set!Part(V.uGlobal.uSorted(V.Local.iC)!Part)
+		F.ODBC.conX!rst.Set!Job(V.uGlobal.uSorted(V.Local.iC)!Job)
+		F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!OrigDueDate,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!OrigDueDate,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!OrigDueDate(V.uGlobal.uSorted(V.Local.iC)!OrigDueDate)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!OrigDueDate("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!DueDate,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!DueDate,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!DueDate(V.uGlobal.uSorted(V.Local.iC)!DueDate)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!DueDate("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!Description(V.uGlobal.uSorted(V.Local.iC)!Description)
+		F.ODBC.conX!rst.Set!Lbs(V.uGlobal.uSorted(V.Local.iC)!Lbs)
+		F.ODBC.conX!rst.Set!Campaign(V.uGlobal.uSorted(V.Local.iC)!Campaign)
+		F.ODBC.conX!rst.Set!CustName(V.uGlobal.uSorted(V.Local.iC)!CustName)
+		F.ODBC.conX!rst.Set!CustNo(V.uGlobal.uSorted(V.Local.iC)!CustNo)
+		F.ODBC.conX!rst.Set!MasterSpec(V.uGlobal.uSorted(V.Local.iC)!MasterSpec)
+		F.ODBC.conX!rst.Set!Structure(V.uGlobal.uSorted(V.Local.iC)!Structure)
+		F.ODBC.conX!rst.Set!Category(V.uGlobal.uSorted(V.Local.iC)!Category)
+		F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!SchedStart,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!SchedStart,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!SchedStart(V.uGlobal.uSorted(V.Local.iC)!SchedStart)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!SchedStart("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!Sfx(V.uGlobal.uSorted(V.Local.iC)!Sfx)
+		F.ODBC.conX!rst.Set!Seq(V.uGlobal.uSorted(V.Local.iC)!Seq)
+		F.ODBC.conX!rst.Set!Priority(V.uGlobal.uSorted(V.Local.iC)!Priority)
+		F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!SchedEnd,<>,"")
+			F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!SchedEnd,<>,"00/00/00")
+				F.ODBC.conX!rst.Set!SchedEnd(V.uGlobal.uSorted(V.Local.iC)!SchedEnd)
+			F.Intrinsic.Control.EndIf
+'		F.Intrinsic.Control.Else
+'			F.ODBC.conX!rst.Set!SchedEnd("01/01/1900")
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.If(V.uGlobal.uSorted(V.Local.iC)!Comp,<>,"")
+			F.ODBC.conX!rst.Set!Comp(V.uGlobal.uSorted(V.Local.iC)!Comp)
+		F.Intrinsic.Control.Else
+			F.ODBC.conX!rst.Set!Comp(False)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Set!SortedJob(True)
+		F.ODBC.conX!rst.Update
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.iC)
+
+	F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uSorted!Job,V.uGlobal.uJobs(V.Local.iC)!Job,V.uGlobal.uSorted!Sfx,V.uGlobal.uJobs(V.Local.iC)!Sfx,V.uGlobal.uSorted!Seq,V.uGlobal.uJobs(V.Local.iC)!Seq,V.Local.sReturn)
+			F.Intrinsic.Control.If(V.Local.sReturn,=,"")
+
+				F.ODBC.Connection!conX.GetID("BI_3280_APSV3_JBSORT_V1","Row",True,V.Local.iRow)
+				F.Intrinsic.Control.If(V.Local.iRow,=,0)
+					V.Local.iRow.Set(1)
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.String.Concat("SELECT * FROM BI_3280_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Global.sWC,"' AND Job = '",V.uGlobal.uJobs(V.Local.iC)!Job,"' AND Sfx = '",V.uGlobal.uJobs(V.Local.iC)!Sfx,"' AND Seq = '",V.uGlobal.uJobs(V.Local.iC)!Seq,"'",V.Local.sQuery)
+				F.ODBC.Connection!conX.OpenRecordsetRW("rst",V.Local.sQuery)
+				F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,True)
+					F.ODBC.conX!rst.AddNew
+				F.Intrinsic.Control.EndIf
+
+				F.ODBC.conX!rst.Set!SeqRes(V.uGlobal.uJobs(V.Local.iC)!SeqRes)
+				F.ODBC.conX!rst.Set!Row(V.Local.iRow)
+				F.ODBC.conX!rst.Set!Part(V.uGlobal.uJobs(V.Local.iC)!Part)
+				F.ODBC.conX!rst.Set!Job(V.uGlobal.uJobs(V.Local.iC)!Job)
+				F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!OrigDueDate,<>,"")
+					F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!OrigDueDate,<>,"00/00/00")
+						F.ODBC.conX!rst.Set!OrigDueDate(V.uGlobal.uJobs(V.Local.iC)!OrigDueDate)
+					F.Intrinsic.Control.EndIf
+'				F.Intrinsic.Control.Else
+'					F.ODBC.conX!rst.Set!OrigDueDate("01/01/1900")
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!DueDate,<>,"")
+					F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!DueDate,<>,"00/00/00")
+						F.ODBC.conX!rst.Set!DueDate(V.uGlobal.uJobs(V.Local.iC)!DueDate)
+					F.Intrinsic.Control.EndIf
+'				F.Intrinsic.Control.Else
+'					F.ODBC.conX!rst.Set!DueDate("01/01/1900")
+				F.Intrinsic.Control.EndIf
+				F.ODBC.conX!rst.Set!Description(V.uGlobal.uJobs(V.Local.iC)!Description)
+				F.ODBC.conX!rst.Set!Lbs(V.uGlobal.uJobs(V.Local.iC)!Lbs)
+				F.ODBC.conX!rst.Set!Campaign(V.uGlobal.uJobs(V.Local.iC)!Campaign)
+				F.ODBC.conX!rst.Set!CustName(V.uGlobal.uJobs(V.Local.iC)!CustName)
+				F.ODBC.conX!rst.Set!CustNo(V.uGlobal.uJobs(V.Local.iC)!CustNo)
+				F.ODBC.conX!rst.Set!MasterSpec(V.uGlobal.uJobs(V.Local.iC)!MasterSpec)
+				F.ODBC.conX!rst.Set!Structure(V.uGlobal.uJobs(V.Local.iC)!Structure)
+				F.ODBC.conX!rst.Set!Category(V.uGlobal.uJobs(V.Local.iC)!Category)
+				F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedStart,<>,"")
+					F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedStart,<>,"00/00/00")
+						F.ODBC.conX!rst.Set!SchedStart(V.uGlobal.uJobs(V.Local.iC)!SchedStart)
+					F.Intrinsic.Control.EndIf
+'				F.Intrinsic.Control.Else
+'					F.ODBC.conX!rst.Set!SchedStart("01/01/1900")
+				F.Intrinsic.Control.EndIf
+				F.ODBC.conX!rst.Set!Sfx(V.uGlobal.uJobs(V.Local.iC)!Sfx)
+				F.ODBC.conX!rst.Set!Seq(V.uGlobal.uJobs(V.Local.iC)!Seq)
+				F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Priority.IsNumeric,=,True)
+					F.ODBC.conX!rst.Set!Priority(V.uGlobal.uJobs(V.Local.iC)!Priority)
+				F.Intrinsic.Control.Else
+					F.ODBC.conX!rst.Set!Priority(0)
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedEnd,<>,"")
+					F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedEnd,<>,"00/00/00")
+						F.ODBC.conX!rst.Set!SchedEnd(V.uGlobal.uJobs(V.Local.iC)!SchedEnd)
+					F.Intrinsic.Control.EndIf
+'				F.Intrinsic.Control.Else
+'					F.ODBC.conX!rst.Set!SchedEnd("01/01/1900")
+				F.Intrinsic.Control.EndIf
+				F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Comp,<>,"")
+					F.ODBC.conX!rst.Set!Comp(V.uGlobal.uJobs(V.Local.iC)!Comp)
+				F.Intrinsic.Control.Else
+					F.ODBC.conX!rst.Set!Comp(False)
+				F.Intrinsic.Control.EndIf
+				F.ODBC.conX!rst.Set!SortedJob(False)
+				F.ODBC.conX!rst.Update
+				F.ODBC.conX!rst.Close
+			F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.String.Concat(V.Caller.BusintDir,"\\Custom\\CP_APSV3_JBSORT_2310_V1.rpt",V.Local.sReportName)
+'F.Global.BI.InitializeReport("Moveable Dispatch List Report",V.Local.sReportName,V.Local.iReport)
+V.Local.iReport.Set(002310)
+F.Intrinsic.UI.CloseWaitDialog
+
+F.Global.BI.PrintReport(V.Local.iReport,0,"","","",False)
+
+F.Intrinsic.Control.CallSub(F_print_dispatch_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_print_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_3280_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+
+
+program.sub.cmd_print_click.end
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Global.sWC.Declare(String)
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.bExists.Declare(Boolean)
+
+F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+F.ODBC.Connection!conX.TableExists("ATG_3280_APSV3_JBSORT_V1",V.Local.bExists)
+F.Intrinsic.Control.If(V.Local.bExists,=,False)
+	F.Intrinsic.UI.Msgbox("The table ATG_3280_APSV3_JBSORT_V1 was not found. Please execute ATG_APSV3_JBSORT_V1.sql before running this program.")
+	F.Intrinsic.Control.CallSub(F_print_dispatch_unload)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conX.OpenRecordsetRO("rst","SELECT Distinct APSV3_JBLines.SeqRes from APSV3_JBLines JOIN APSV3_JBMaster ON APSV3_JBLines.JOB = APSV3_JBMaster.JOB where APSV3_JBLines.COMPLDATE is Null and APSV3_JBLines.SeqType = 1 ORDER by APSV3_JBLines.SeqRes")
+F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,True)
+	F.Intrinsic.UI.Msgbox("No job lines were found in the APSV3_JBLines table.")
+	F.Intrinsic.Control.CallSub(F_print_dispatch_unload)
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		Gui.F_Print_Dispatch.dlist_wc.AddItem(V.ODBC.conX!rst.FieldValTrim!SeqRes)
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+F.Intrinsic.Control.EndIf
+F.ODBC.conX!rst.Close
+
+Gui.F_Print_Dispatch..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+program.sub.f_print_dispatch_unload.start
+F.Intrinsic.Control.SetErrorHandler("f_print_dispatch_unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("f_print_dispatch_unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.f_print_dispatch_unload.end
+
+Program.Sub.update_table.Start
+F.Intrinsic.Control.SetErrorHandler("Update_Table_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sDeletions.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.sSeq.Declare(String)
+V.Local.bExists.Declare(Boolean)
+
+F.ODBC.Connection!conX.TableExists("ATG_3280_APSV3_JBSORT_V1",V.Local.bExists)
+
+'if the table exists, loop through all the records
+F.Intrinsic.Control.If(V.Local.bExists,=,True)
+	F.ODBC.Connection!conX.OpenRecordsetRW("rst","ATG_3280_APSV3_JBSORT_V1")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!Seq,<>,"")
+			F.Intrinsic.String.Format(V.ODBC.conX!rst.FieldValTrim!Seq,"###000",V.Local.sSeq)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Concat(" SELECT ComplDate, SeqRes FROM APSV3_JBLines WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.Local.sSeq,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenRecordsetRO("rst2",V.Local.sQuery)
+		'if the record exists and has a completion date listed, delete the record
+		F.Intrinsic.Control.If(V.ODBC.conX!rst2.EOF,<>,True)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst2.FieldValTrim!ComplDate,<>,"")
+				F.Intrinsic.String.Concat(V.Local.sDeletions,"*!*DELETE FROM ATG_3280_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+			F.Intrinsic.Control.EndIf
+			'if the record exists but the seqres does not match what was previously saved, delete the record
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!SeqRes,<>,V.ODBC.conX!rst2.FieldValTrim!SeqRes)
+				F.Intrinsic.String.Concat(V.Local.sDeletions,"*!*DELETE FROM ATG_3280_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			'if the record doesnt exist, delete it from the custom table
+			F.Intrinsic.String.Concat(V.Local.sDeletions,"*!*DELETE FROM ATG_3280_APSV3_JBSORT_V1 WHERE Job = '",V.ODBC.conX!rst.FieldValTrim!Job,"' AND Sfx = '",V.ODBC.conX!rst.FieldValTrim!Sfx,"' AND Seq = '",V.ODBC.conX!rst.FieldValTrim!Seq,"'",V.Local.sDeletions)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst2.Close
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.EndIf
+
+'delete all marked sequences
+F.Intrinsic.String.Split(V.Local.sDeletions,"*!*",V.Local.sDeletions)
+F.Intrinsic.Control.For(V.Local.iC,1,V.Local.sDeletions.UBound,1)
+	F.ODBC.Connection!conX.Execute(V.Local.sDeletions(V.Local.iC))
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Update_Table_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_3280_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.update_table.End
+
+Program.Sub.Load_UDT.Start
+F.Intrinsic.Control.SetErrorHandler("Load_UDT_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sWC.Declare(String)
+V.Local.sMsg.Declare(String)
+V.Local.iC.Declare(Long)
+V.Local.iTotalJobs.Declare(Long)
+V.Local.bPrev.Declare(Boolean)
+V.Local.dTempDate.Declare(Date)
+
+V.Local.sWC.Set(V.Screen.F_Print_Dispatch!dlist_WC.Text)
+
+V.uGlobal.uJobs.Redim(0,0)
+F.Intrinsic.String.Concat("SELECT APSV3_JBLines.Job, APSV3_JBLines.Sfx, APSV3_JBLines.Seq, APSV3_JBLines.SeqRes, APSV3_JBLines.PCSTOPROD, APSV3_JBMaster.Description, APSV3_JBMaster.Part, APSV3_JBMaster.CustName, APSV3_JBMaster.CustNo, APSV3_JBLines.DueDate, APSV3_JBMaster.Priority, APSV3_JBMaster.SchedStart, APSV3_JBMaster.SchedEnd, APSV3_JBLines.ComplDate from APSV3_JBLines JOIN APSV3_JBMaster ON APSV3_JBLines.JOB = APSV3_JBMaster.JOB where APSV3_JBLines.ComplDate is null and APSV3_JBLines.SeqType = 1 AND APSV3_JBLines.SeqRes = '",V.Local.sWC,"' ORDER BY APSV3_JBLines.Job, APSV3_JBLines.Sfx, APSV3_JBLines.Seq",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uJobs",False)
+F.ODBC.conX!rst.Close
+
+V.uGlobal.uSorted.Redim(0,0)
+F.Intrinsic.String.Concat("SELECT * FROM ATG_3280_APSV3_JBSORT_V1 WHERE SeqRes = '",V.Local.sWC,"' ORDER BY Row",V.Local.sQuery)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uSorted",False)
+F.ODBC.conX!rst.Close
+F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!Sorted,True)
+F.Intrinsic.Variable.UDTSetMemberFormat(V.uGlobal.uSorted!Seq,"###000")
+
+F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uJobs!Job,V.uGlobal.uJobs!Sfx)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+	'delete the sorted job from the list of unsorted jobs
+	F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uJobs!Job,V.uGlobal.uSorted(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uSorted(V.Local.iC)!Sfx,V.uGlobal.uJobs!Seq,V.uGlobal.uSorted(V.Local.iC)!Seq,V.uGlobal.uJobs!Part,V.uGlobal.uSorted(V.Local.iC)!Part)
+F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+'add something here to make sure zeros are included in the date strings
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Lbs,=,"")
+		V.uGlobal.uJobs(V.Local.iC)!Lbs.Set(0)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedStart,<>,"")
+		V.Local.dTempDate.Set(V.uGlobal.uJobs(V.Local.iC)!SchedStart)
+		F.Intrinsic.String.Format(V.Local.dTempDate,"MM/DD/YY",V.uGlobal.uJobs(V.Local.iC)!SchedStart)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!SchedEnd,<>,"")
+		V.Local.dTempDate.Set(V.uGlobal.uJobs(V.Local.iC)!SchedEnd)
+		F.Intrinsic.String.Format(V.Local.dTempDate,"MM/DD/YY",V.uGlobal.uJobs(V.Local.iC)!SchedEnd)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Variable.UDTMultiQuickSort(V.uGlobal.uJobs!Job,False,V.uGlobal.uJobs!Sfx,False)
+
+'THIS CODE DETERMINES HOW MANY RECORDS TO PRINT
+'If there are more than 75 sorted jobs, take the first 75 and take no unsorted jobs
+F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,>,74)
+	V.uGlobal.uSorted.RedimPreserve(0,74)
+	V.uGlobal.uJobs.Redim(0,0)
+F.Intrinsic.Control.Else
+	'Figure out how many unsorted jobs to take
+	F.Intrinsic.Math.Sub(73,V.uGlobal.uSorted.UBound,V.Local.iTotalJobs)
+	F.Intrinsic.Control.If(V.Local.iTotalJobs,<,V.uGlobal.uJobs.UBound)
+		V.uGlobal.uJobs.RedimPreserve(0,V.Local.iTotalJobs)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'if any jobs are already sorted, match the comp fields
+F.Intrinsic.Control.If(V.uGlobal.uSorted.UBound,<>,-1)
+	F.Global.APS.PSC(V.Global.uSorted!Job,V.Global.uSorted!Sfx,V.Global.uSorted!Seq,V.Global.uSorted!Comp)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!FGStyle,4)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uSorted!TempStyle,4)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uSorted!Comp,"True",V.uGlobal.uSorted!FGStyle,5)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uSorted!Comp,"True",V.uGlobal.uSorted!TempStyle,5)
+F.Intrinsic.Control.EndIf
+
+'order the jobs udt by job, sfx, seq and loop
+'if the prev seq was completed, mark the comp field for the current job as true
+F.Intrinsic.Control.If(V.uGlobal.uJobs.UBound,>,0)
+	F.Global.APS.PSC(V.Global.uJobs!Job,V.Global.uJobs!Sfx,V.Global.uJobs!Seq,V.Global.uJobs!Comp)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!FGStyle,2)
+	F.Intrinsic.Variable.UDTSetMemberValue(V.uGlobal.uJobs!TempStyle,2)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uJobs!Comp,"True",V.uGlobal.uJobs!FGStyle,3)
+	F.Intrinsic.Variable.UDTMultiSeekSet(V.uGlobal.uJobs!Comp,"True",V.uGlobal.uJobs!TempStyle,3)
+F.Intrinsic.Control.EndIf
+
+'get the data for the extra columns
+F.Intrinsic.Control.CallSub(Get_job_info)
+F.Intrinsic.Control.CallSub(Get_part_info)
+F.Intrinsic.Control.CallSub(Get_router_setup)
+'F.Intrinsic.Control.CallSub(Get_setup_lines)
+
+
+'F.Intrinsic.Variable.UDTMultiFlagDuplicates(V.uGlobal.uJobs!Job,V.uGlobal.uJobs!Sfx)
+'F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+'
+'F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uSorted.UBound,1)
+'	'delete the sorted job from the list of unsorted jobs
+'	F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uJobs!Job,V.uGlobal.uSorted(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uSorted(V.Local.iC)!Sfx,V.uGlobal.uJobs!Seq,V.uGlobal.uSorted(V.Local.iC)!Seq,V.uGlobal.uJobs!Part,V.uGlobal.uSorted(V.Local.iC)!Part)
+'F.Intrinsic.Control.Next(V.Local.iC)
+'F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_UDT_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Load_UDT.End
+
+Program.Sub.Get_Job_Info.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Job_Info_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.iC.Declare(Long)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	F.Intrinsic.String.Concat("select date_orig_due as OrigDueDate, date_due as DueDate, router, qty_order, sch_grp as Campaign from JOB_HEADER where job = '",V.uGlobal.uJobs(V.Local.iC)!Job,"' and suffix ='",V.uGlobal.uJobs(V.Local.iC)!Sfx,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.Local.sTemp.Set(V.ODBC.conX!rst.FieldValTrim!OrigDueDate)
+		F.Intrinsic.String.StripCharacters(V.Local.sTemp,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",6,V.Local.sTemp)
+		F.Intrinsic.String.LimitSplit(V.Local.sTemp,2,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp(0),"/",V.Local.sTemp(1),"/",V.Local.sTemp(2),V.Local.sTemp)
+		V.uGlobal.uJobs(V.Local.iC)!OrigDueDate.Set(V.Local.sTemp)
+
+		V.Local.sTemp.Set(V.ODBC.conX!rst.FieldValTrim!DueDate)
+		F.Intrinsic.String.StripCharacters(V.Local.sTemp,V.Local.sTemp)
+		F.Intrinsic.String.RPad(V.Local.sTemp,"0",6,V.Local.sTemp)
+		F.Intrinsic.String.LimitSplit(V.Local.sTemp,2,V.Local.sTemp)
+		F.Intrinsic.String.Concat(V.Local.sTemp(0),"/",V.Local.sTemp(1),"/",V.Local.sTemp(2),V.Local.sTemp)
+		V.uGlobal.uJobs(V.Local.iC)!DueDate.Set(V.Local.sTemp)
+
+		V.uGlobal.uJobs(V.Local.iC)!Campaign.Set(V.ODBC.conX!rst.FieldValTrim!Campaign)
+		V.uGlobal.uJobs(V.Local.iC)!OrigCampaign.Set(V.ODBC.conX!rst.FieldValTrim!Campaign)
+		V.uGlobal.uJobs(V.Local.iC)!Router.Set(V.ODBC.conX!rst.FieldValTrim!Router)
+		V.uGlobal.uJobs(V.Local.iC)!Qty.Set(V.ODBC.conX!rst.FieldValFloat!Qty_Order)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+	F.Intrinsic.String.Concat("select UM from JOB_OPERATIONS where job = '",V.uGlobal.uJobs(V.Local.iC)!Job,"' and suffix = '",V.uGlobal.uJobs(V.Local.iC)!Sfx,"' and seq = '",V.uGlobal.uJobs(V.Local.iC)!Seq,"' and UM <> ''",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		F.Intrinsic.UI.Msgbox(V.ODBC.conX!rst.FieldValTrim!UM)
+		V.uGlobal.uJobs(V.Local.iC)!UOM.Set(V.ODBC.conX!rst.FieldValTrim!UM)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Job_Info_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Job_Info.End
+
+Program.Sub.Get_Part_Info.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Part_Info_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sPart.Declare(String)
+V.Local.iLbspWO.Declare(Float)
+V.Local.iC.Declare(Long)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	V.Local.sPart.Set(V.uGlobal.uJobs(V.Local.iC)!Part)
+	F.Intrinsic.String.Concat("select lbs, description_2 as Structure, description_3 as MasterSpec from INVENTORY_MST2 where part = '",V.Local.sPart,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.Local.iLbspWO.Set(V.ODBC.conX!rst.FieldValFloat!Lbs)
+		F.Intrinsic.Math.Mult(V.Local.iLbspWO,V.uGlobal.uJobs(V.Local.iC)!Qty,V.uGlobal.uJobs(V.Local.iC)!Lbs)
+		V.uGlobal.uJobs(V.Local.iC)!Structure.Set(V.ODBC.conX!rst.FieldValTrim!Structure)
+		V.uGlobal.uJobs(V.Local.iC)!MasterSpec.Set(V.ODBC.conX!rst.FieldValTrim!MasterSpec)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+	F.Intrinsic.String.Concat("select code_sort as Category, sec_dim as FlatWidth, um_inventory as UM  from INVENTORY_MSTR where part='",V.Local.sPart,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		V.uGlobal.uJobs(V.Local.iC)!Category.Set(V.ODBC.conX!rst.FieldValTrim!Category)
+		V.uGlobal.uJobs(V.Local.iC)!FlatWidth.Set(V.ODBC.conX!rst.FieldValTrim!FlatWidth)
+		V.uGlobal.uJobs(V.Local.iC)!UoM.Set(V.ODBC.conX!rst.FieldValTrim!UM)
+	F.Intrinsic.Control.Else
+		V.uGlobal.uJobs(V.Local.iC)!FlatWidth.Set(0)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+
+F.Intrinsic.Control.Next(V.Local.iC)
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Part_Info_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_GEN_REPORT_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Part_Info.End
+
+Program.Sub.Get_setup_lines.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Setup_Lines_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sReturn.Declare(String)
+V.Local.sRet2.Declare(String)
+V.Local.iLbs.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.iC2.Declare(Long)
+
+'find all the work orders that have set up in the router
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uJobs!Router,"SET",2,V.Local.sReturn)
+F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+	F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+	'if there are multiple lines that have set up
+	F.Intrinsic.Control.If(V.Local.sReturn.UBound,>,1)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+			'combine the whole work order for that setup into one line
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobs!Job,V.uGlobal.uJobs(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uJobs(V.Local.iC)!Sfx,V.Local.sRet2)
+			F.Intrinsic.Control.If(V.Local.sRet2,<>,"")
+				F.Intrinsic.String.Split(V.Local.sRet2,"*!*",V.Local.sRet2)
+				'add up all the lbs and save them to the first match
+				F.Intrinsic.Control.For(V.Local.iC2,1,V.Local.sRet2.UBound,1)
+					F.Intrinsic.Math.Add(V.uGlobal.uJobs(V.Local.sRet2(V.Local.iC2))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs)
+					F.Intrinsic.Variable.UDTFlagOrdinal(V.uGlobal.uJobs,True,V.Local.sRet2(V.Local.iC2))
+				F.Intrinsic.Control.Next(V.Local.iC2)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+'delete all the extra lines except for the first instance which now has all the lbs
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+'find all the work orders that have purge in the route
+F.Intrinsic.Variable.UDTSeek(V.uGlobal.uJobs!Router,"PUR",2,V.Local.sReturn)
+F.Intrinsic.Control.If(V.Local.sReturn,<>,"")
+	F.Intrinsic.String.Split(V.Local.sReturn,"*!*",V.Local.sReturn)
+	'if there are multiple lines that have purge
+	F.Intrinsic.Control.If(V.Local.sReturn.UBound,>,1)
+		F.Intrinsic.Control.For(V.Local.iC,0,V.Local.sReturn.UBound,1)
+			'combine the whole work order for that purge into one line
+			F.Intrinsic.Variable.UDTMultiSeek(V.uGlobal.uJobs!Job,V.uGlobal.uJobs(V.Local.iC)!Job,V.uGlobal.uJobs!Sfx,V.uGlobal.uJobs(V.Local.iC)!Sfx,V.Local.sRet2)
+			F.Intrinsic.Control.If(V.Local.sRet2,<>,"")
+				F.Intrinsic.String.Split(V.Local.sRet2,"*!*",V.Local.sRet2)
+				'add up all the lbs and save them to the first match
+				F.Intrinsic.Control.For(V.Local.iC2,1,V.Local.sRet2.UBound,1)
+					F.Intrinsic.Math.Add(V.uGlobal.uJobs(V.Local.sRet2(V.Local.iC2))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs,V.uGlobal.uJobs(V.Local.sRet2(0))!Lbs)
+					F.Intrinsic.Variable.UDTFlagOrdinal(V.uGlobal.uJobs,True,V.Local.sRet2(V.Local.iC2))
+				F.Intrinsic.Control.Next(V.Local.iC2)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Next(V.Local.iC)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+'delete all the extra lines except for the first instance which now has all the lbs
+F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uJobs)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Setup_Lines_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+
+
+Program.Sub.Get_setup_lines.End
+
+Program.Sub.Get_Router_Setup.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Router_Setup_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.iC.Declare(Long)
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uJobs.UBound,1)
+	F.Intrinsic.String.Concat("select set_up from ROUTER_LINE where um_inventory = 'LB' and router = '",V.uGlobal.uJobs(V.Local.iC)!Router,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,<>,True)
+		F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+			F.Intrinsic.Math.Add(V.uGlobal.uJobs(V.Local.iC)!Lbs,V.ODBC.conX!rst.FieldValFloat!Set_Up,V.uGlobal.uJobs(V.Local.iC)!Lbs)
+			F.ODBC.conX!rst.MoveNext
+		F.Intrinsic.Control.Loop
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.If(V.uGlobal.uJobs(V.Local.iC)!Lbs,>,1)
+		F.Intrinsic.Math.Round(V.uGlobal.uJobs(V.Local.iC)!Lbs,0,V.uGlobal.uJobs(V.Local.iC)!Lbs)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Router_Setup_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: ATG_APS_DISPATCH_LIST_ORDER_V1.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Get_Router_Setup.End
+
+
